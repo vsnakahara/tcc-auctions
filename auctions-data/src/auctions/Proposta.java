@@ -7,9 +7,14 @@ package auctions;
 public class Proposta {
     //lances dados pelos professores
     // ScT
-    
     //soma da carga horária semanal todal de um conjunto S
+    
+    
+    private int cd_proposta;
     private int cargaHoraria;
+    private double valor;
+    private Turmas turmas = new Turmas();
+    
     
     
 
@@ -20,6 +25,23 @@ public class Proposta {
     public void setCargaHoraria(int cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public Turmas getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(Turmas turmas) {
+        this.turmas = turmas;
+    }
+    
     
     
     

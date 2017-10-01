@@ -13,14 +13,23 @@ public class Turmas {
     //P é o conjunto de todos os professores a serem alocados
     //S turmas de interesse de um professor Pi.
     
+    private String nome;
     private int ch_turma;
+    
     HashMap<String, Turmas> conjuntoS = new HashMap<>();
 
     public Turmas() {
         super();
     }
-    
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
     public int getCh_turma() {
         return ch_turma;
     }

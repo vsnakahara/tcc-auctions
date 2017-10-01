@@ -7,12 +7,19 @@ package auctions;
 public class Professor {
     
     //carga horaria minima e maxima semanal
+    private String nome;
     private int hMin;
     private int hMax;
 
-    
-    
-    
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public int gethMin() {
         return hMin;
     }
