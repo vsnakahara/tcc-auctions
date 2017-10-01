@@ -14,6 +14,14 @@ public class Proposta {
     private int cargaHoraria;
     private double valor;
     private Turmas turmas = new Turmas();
+
+    public int getCd_proposta() {
+        return cd_proposta;
+    }
+
+    public void setCd_proposta(int cd_proposta) {
+        this.cd_proposta = cd_proposta;
+    }
     
     
     
