@@ -11,6 +11,17 @@ public class Professor {
     private int hMin;
     private int hMax;
 
+    public Professor(String nome, int hMin, int hMax) {
+        this.nome = nome;
+        this.hMin = hMin;
+        this.hMax = hMax;
+    }
+
+    Professor() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 
     public String getNome() {
         return nome;

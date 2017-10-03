@@ -1,5 +1,6 @@
 package auctions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
     
@@ -17,16 +18,21 @@ public class Turmas {
     private String nome;
     private int ch_turma;
     private double valorEstimado;
+    private double maiorValorEstimado;
+    private double manorValorEstimado;
     
-    HashMap<String, Turmas> conjuntoS = new HashMap<>();
-
+    
+    HashMap<String, ArrayList<Turmas>> conjuntoS = new HashMap<>();
+    
     
     public void viewConjunto(String chave){
-        for (Map.Entry<String, Turmas> entry : conjuntoS.entrySet()) {
-            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue().getNome());
+        for (Map.Entry<String, ArrayList<Turmas>> entry : conjuntoS.entrySet()) {
+            
             if(entry.getKey().equals(chave)){
                 String key = entry.getKey();
-                Turmas value = entry.getValue();
+                for(int i = 0; i < entry.getValue().size(); i++){
+                    System.out.print(entry.getValue().get(i).nome+" ");
+                }
                 
             }
         }
@@ -69,13 +75,31 @@ public class Turmas {
         this.ch_turma = ch_turma;
     }
 
-    public HashMap<String, Turmas> getConjuntoS() {
+    public HashMap<String, ArrayList<Turmas>> getConjuntoS() {
         return conjuntoS;
     }
 
-    public void setConjuntoS(HashMap<String, Turmas> conjuntoS) {
+    public void setConjuntoS(HashMap<String, ArrayList<Turmas>> conjuntoS) {
         this.conjuntoS = conjuntoS;
     }
+
+    public double getMaiorValorEstimado() {
+        return maiorValorEstimado;
+    }
+
+    public void setMaiorValorEstimado(double maiorValorEstimado) {
+        this.maiorValorEstimado = maiorValorEstimado;
+    }
+
+    public double getManorValorEstimado() {
+        return manorValorEstimado;
+    }
+
+    public void setManorValorEstimado(double manorValorEstimado) {
+        this.manorValorEstimado = manorValorEstimado;
+    }
+    
+    
     
     
     
