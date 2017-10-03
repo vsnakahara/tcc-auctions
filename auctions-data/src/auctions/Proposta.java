@@ -14,12 +14,18 @@ public class Proposta {
     private int cargaHoraria;
     private double valor;
     private Turmas turmas = new Turmas();
+    private String subconjunto;
     Professor professor = new Professor();
 
-    public Proposta(int cd_proposta, int cargaHoraria, double valor) {
+    
+    public Proposta(int cd_proposta, int cargaHoraria, double valor, 
+            Professor professor, String subconjunto) {
         this.cd_proposta = cd_proposta;
         this.cargaHoraria = cargaHoraria;
         this.valor = valor;
+        this.professor = professor;
+        this.subconjunto = subconjunto;
+        
     }
 
     
