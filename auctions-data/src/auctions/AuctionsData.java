@@ -23,13 +23,14 @@ public class AuctionsData {
         List<Turmas> turma = new ArrayList();
         List<Turmas> turma2 = new ArrayList();
         
-//        turma.add(T1);
-//        turma.add(T2);
+        turma.add(T1);
+        turma.add(T2);
         turma.add(T3);
         
+        
         turma2.add(T3);
-//        turma2.add(T4);
-//        turma2.add(T5);
+        turma2.add(T4);
+        turma2.add(T5);
         
         util.interseccao(turma, turma2);
         util.interseccaoTotal(turma, turma2);
