@@ -1,14 +1,45 @@
 package auctions;
 
 import java.util.ArrayList;
+import java.util.List;
+import utils.Util;
 
 /**
  *
  * @author vanessa
  */
 public class AuctionsData {
+    Util util = new Util();
+    
+    public void show(){
+        Turmas turmas = new Turmas();
+        
+        Turmas T1 =  new Turmas("T1", 4, 0.00);
+        Turmas T2 =  new Turmas("T2", 6, 0.00);
+        Turmas T3 =  new Turmas("T3", 4, 0.00);
+        Turmas T4 =  new Turmas("T4", 6, 0.00);
+        Turmas T5 =  new Turmas("T5", 4, 0.00);
+        
+        List<Turmas> turma = new ArrayList();
+        List<Turmas> turma2 = new ArrayList();
+        
+//        turma.add(T1);
+//        turma.add(T2);
+        turma.add(T3);
+        
+        turma2.add(T3);
+//        turma2.add(T4);
+//        turma2.add(T5);
+        
+        util.interseccao(turma, turma2);
+        util.interseccaoTotal(turma, turma2);
+        
+    }
     
     public static void main(String[] args) {
+        AuctionsData a = new AuctionsData();
+    
+        a.show();
         
         Turmas turmas = new Turmas();
         
@@ -18,13 +49,14 @@ public class AuctionsData {
         Turmas T4 =  new Turmas("T4", 6, 0.00);
         Turmas T5 =  new Turmas("T5", 4, 0.00);
         
-        ArrayList turma = new ArrayList();
-        ArrayList turma2 = new ArrayList();
+        List<Turmas> turma = new ArrayList();
+        List<Turmas> turma2 = new ArrayList();
         
         turma.add(T1);
         turma.add(T2);
         turma.add(T3);
         turma2.add(T4);
+        turma2.add(T3);
         turma2.add(T5);
         
         
@@ -44,6 +76,9 @@ public class AuctionsData {
         ConjuntoTurmas c = new ConjuntoTurmas();
         Estrutura e = new Estrutura();
         Estrutura ee = new Estrutura();
+        
+        
+        
         
         
         
