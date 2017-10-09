@@ -1,5 +1,8 @@
 package auctions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author vanessa
@@ -13,9 +16,12 @@ public class Proposta {
     private int cd_proposta;
     private int cargaHoraria;
     private double valor;
-    private Turmas turmas = new Turmas();
-    private String subconjunto;
-    Professor professor = new Professor();
+    
+    private Professor professor;
+    private List<Turmas> turmas = new ArrayList<>();
+    
+	
+    
 
     
     public Proposta(int cd_proposta, int cargaHoraria, double valor, 
@@ -24,15 +30,9 @@ public class Proposta {
         this.cargaHoraria = cargaHoraria;
         this.valor = valor;
         this.professor = professor;
-        this.subconjunto = subconjunto;
         
     }
 
-    
-    
-
-    
-    
     public int getCd_proposta() {
         return cd_proposta;
     }
@@ -55,14 +55,6 @@ public class Proposta {
 
     public void setValor(double valor) {
         this.valor = valor;
-    }
-
-    public Turmas getTurmas() {
-        return turmas;
-    }
-
-    public void setTurmas(Turmas turmas) {
-        this.turmas = turmas;
     }
 
     public Professor getProfessor() {

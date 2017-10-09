@@ -7,6 +7,7 @@ package auctions;
 public class Professor {
     
     //carga horaria minima e maxima semanal
+    private int id;
     private String nome;
     private int hMin;
     private int hMax;
@@ -17,12 +18,10 @@ public class Professor {
         this.hMax = hMax;
     }
 
-    Professor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Professor() {
+        
     }
     
-    
-
     public String getNome() {
         return nome;
     }
