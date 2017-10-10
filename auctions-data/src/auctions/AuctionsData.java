@@ -49,10 +49,6 @@ public class AuctionsData {
         e.getPropostas().add(new Proposta(3, 7, s3));
         
         e.estimarValorPropostas();
-        
-        
-
-
     }
     
 }
