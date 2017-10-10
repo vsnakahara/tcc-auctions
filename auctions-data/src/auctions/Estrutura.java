@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,11 +16,11 @@ import java.util.List;
 public class Estrutura {
     
     //List para todas as turmas -> T conjunto de todas as turmas a serem distribuídos
-    private List<Turmas> turmas;
+    private List<Turmas> turmas = new ArrayList<Turmas>();
     //List para todos os professores -> P é o conjunto de todos os professores a serem alocados
-    private List<Professor> professores;
+    private List<Professor> professores = new ArrayList<Professor>();
     //list de Propostas Submetidas -> contém S turmas de interesse de um professor Pi.
-    private List<Proposta> propostas;
+    private List<Proposta> propostas = new ArrayList<Proposta>();
 
     
     public void estimarValorPropostas(){
@@ -30,12 +31,8 @@ public class Estrutura {
         }
     
     }
-    
-    
-    
-    
-    
-    
+      
+        
     public List<Turmas> getTurmas() {
         return turmas;
     }
