@@ -12,11 +12,14 @@ public class Professor {
     private int hMin;
     private int hMax;
 
-    public Professor(String nome, int hMin, int hMax) {
+    public Professor(int id, String nome, int hMin, int hMax) {
+        this.id = id;
         this.nome = nome;
         this.hMin = hMin;
         this.hMax = hMax;
     }
+
+    
 
     public Professor() {
         

@@ -1,6 +1,5 @@
 package auctions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,61 +10,70 @@ public class Proposta {
     //lances dados pelos professores
     // ScT
     //soma da carga horária semanal todal de um conjunto S
-    
-    
-    private int cd_proposta;
-    private int cargaHoraria;
-    private double valor;
-    
-    private Professor professor;
-    private List<Turmas> turmas = new ArrayList<>();
-    
-	
-    
+  
+    private Integer idProfessor;
+    private float valor;
+    private float valorIndividual;
+    private int chTotal; 
+    private List<Turmas> turmas;
 
-    
-    public Proposta(int cd_proposta, int cargaHoraria, double valor, 
-            Professor professor, String subconjunto) {
-        this.cd_proposta = cd_proposta;
-        this.cargaHoraria = cargaHoraria;
+    public Proposta(Integer idProfessor, float valor, List<Turmas> turmas) {
+        this.idProfessor = idProfessor;
         this.valor = valor;
-        this.professor = professor;
-        
+        this.turmas = turmas;
+        this.chTotal = this.calcularCargaHoraria(turmas);
     }
 
-    public int getCd_proposta() {
-        return cd_proposta;
+    public Integer getIdProfessor() {
+        return idProfessor;
     }
 
-    public void setCd_proposta(int cd_proposta) {
-        this.cd_proposta = cd_proposta;
-    }
-    
-    public int getCargaHoraria() {
-        return cargaHoraria;
+    public void setIdProfessor(Integer idProfessor) {
+        this.idProfessor = idProfessor;
     }
 
-    public void setCargaHoraria(int cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
-    }
-
-    public double getValor() {
+    public float getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(float valor) {
         this.valor = valor;
     }
 
-    public Professor getProfessor() {
-        return professor;
+    public int getChTotal() {
+        return chTotal;
     }
 
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
+    public void setChTotal(int chTotal) {
+        this.chTotal = chTotal;
+    }
+
+    public List<Turmas> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(List<Turmas> turmas) {
+        this.turmas = turmas;
+    }
+
+    public float getValorIndividual() {
+        return valorIndividual;
+    }
+
+    public void setValorIndividual(float valorIndividual) {
+        this.valorIndividual = valorIndividual;
     }
     
     
     
+    public int calcularCargaHoraria(List<Turmas> t){
+        
+        int total = 0;
+        for(int i = 0; i<t.size(); i++){
+            total += t.get(i).getCh_turma();
+        }
+        return total;
+    }
+
     
 }
