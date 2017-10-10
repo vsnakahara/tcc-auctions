@@ -1,4 +1,4 @@
-package auctions;
+package auctions;   
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,11 @@ public class AuctionsData {
     public void show(){
         Turmas turmas = new Turmas();
         
-        Turmas T1 =  new Turmas("T1", 4, 0.00);
-        Turmas T2 =  new Turmas("T2", 6, 0.00);
-        Turmas T3 =  new Turmas("T3", 4, 0.00);
-        Turmas T4 =  new Turmas("T4", 6, 0.00);
-        Turmas T5 =  new Turmas("T5", 4, 0.00);
+        Turmas T1 =  new Turmas(1, "T1", 4, 0.00);
+        Turmas T2 =  new Turmas(2, "T2", 6, 0.00);
+        Turmas T3 =  new Turmas(3, "T3", 4, 0.00);
+        Turmas T4 =  new Turmas(4, "T4", 6, 0.00);
+        Turmas T5 =  new Turmas(5, "T5", 4, 0.00);
         
         List<Turmas> turma = new ArrayList();
         List<Turmas> turma2 = new ArrayList();
@@ -26,6 +26,7 @@ public class AuctionsData {
         turma.add(T1);
         turma.add(T2);
         turma.add(T3);
+        turma.add(T4);
         
         
         turma2.add(T3);
@@ -44,24 +45,7 @@ public class AuctionsData {
         
         Turmas turmas = new Turmas();
         
-        Turmas T1 =  new Turmas("T1", 4, 0.00);
-        Turmas T2 =  new Turmas("T2", 6, 0.00);
-        Turmas T3 =  new Turmas("T3", 4, 0.00);
-        Turmas T4 =  new Turmas("T4", 6, 0.00);
-        Turmas T5 =  new Turmas("T5", 4, 0.00);
-        
-        List<Turmas> turma = new ArrayList();
-        List<Turmas> turma2 = new ArrayList();
-        
-        turma.add(T1);
-        turma.add(T2);
-        turma.add(T3);
-        turma2.add(T4);
-        turma2.add(T3);
-        turma2.add(T5);
-        
-        
-//        turmas.viewConjunto("S2");
+      
         Professor p1 = new Professor("P1", 10, 20);
         Professor p2 = new Professor("P2", 8, 16);
         Professor p3 = new Professor("P3", 12, 22);

@@ -17,6 +17,7 @@ public class Turmas {
     private String nome;
     private int ch_turma;
     private int semestre;
+    
     private double valorEstimado;
     private double maiorValorEstimado;
     private double manorValorEstimado;
@@ -25,7 +26,8 @@ public class Turmas {
         super();
     }
 
-    public Turmas(String nome, int ch_turma, double valorEstimado) {
+    public Turmas(int id, String nome, int ch_turma, double valorEstimado) {
+        this.id = id;
         this.nome = nome;
         this.ch_turma = ch_turma;
         this.valorEstimado = valorEstimado;
