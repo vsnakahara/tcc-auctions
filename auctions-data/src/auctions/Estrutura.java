@@ -24,15 +24,13 @@ public class Estrutura {
 
     
     public void estimarValorPropostas(){
-        
         for (Proposta p : this.getPropostas()) {
             p.setValorIndividual(p.getValor() / p.getTurmas().size());
-            System.out.println(p.getIdProfessor() + " valor Individual: "+p.getValorIndividual());
+            System.out.println("P"+p.getIdProfessor() + ", valor Individual: "+p.getValorIndividual());
         }
     
     }
-      
-        
+    
     public List<Turmas> getTurmas() {
         return turmas;
     }
@@ -70,14 +68,24 @@ public class Estrutura {
     
     
     public void escreverArquivo() throws IOException{
-        String path = "Caminho do arquivo";
+        String path = "/home/vanessa/Documentos/tcc-auctions/teste.lp";
 	
         File file = new File(path);
         long begin = System.currentTimeMillis();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write("Arquivo gravado em : " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new Date()));
+            
+            writer.write("maximize obj: ");
+            for (Proposta p : this.getPropostas()) {
+                writer.write(p.getValor()+" P"+p.getIdProfessor()+"S"+" + ");
+                
+            }
+//            writer.write("Arquivo gravado em : " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new Date()));
+            writer.newLine();
+            writer.newLine();
             writer.newLine();
             writer.write("Caminho da gravação: " + path);
+            writer.newLine();
+            writer.newLine();
             writer.newLine();
             long end = System.currentTimeMillis();
             writer.write("Tempo de gravação: " + (end - begin) + "ms.");

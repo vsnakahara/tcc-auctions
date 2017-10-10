@@ -1,7 +1,5 @@
 package auctions;
  
-import java.util.Objects;
-
 /**
  *
  * @author vanessa
@@ -80,5 +78,25 @@ public class Turmas {
     public void setManorValorEstimado(float manorValorEstimado) {
         this.manorValorEstimado = manorValorEstimado;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Turmas other = (Turmas) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }

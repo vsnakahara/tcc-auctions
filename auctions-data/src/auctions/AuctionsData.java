@@ -1,17 +1,16 @@
 package auctions;   
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import utils.Util;
 
 /**
  *
  * @author vanessa
  */
 public class AuctionsData {
-    Util util = new Util();
     
-    public void popularDados(){
+    public void popularDados() throws IOException{
         
         Turmas T1 = new Turmas(1, "FUNDAMENTOS DE ALGORITMOS", 6, 2);
         Turmas T2 = new Turmas(2, "ANALISE DE SISTEMAS DE SOFTWARE", 4, 2);
@@ -51,13 +50,13 @@ public class AuctionsData {
         e.getPropostas().add(new Proposta(3, 7, s3));
         
         e.estimarValorPropostas();
+        
+        e.escreverArquivo();
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         AuctionsData ad = new AuctionsData();
         ad.popularDados();
-        
-        
     }
     
 }
