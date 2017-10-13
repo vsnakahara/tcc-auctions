@@ -38,6 +38,7 @@ public class AuctionsData {
         s1.add(T1);
         s1.add(T2);
         s1.add(T3);
+        s1.add(T4);
         
         List<Turmas> s2 = new ArrayList<>();
         s2.add(T3);
