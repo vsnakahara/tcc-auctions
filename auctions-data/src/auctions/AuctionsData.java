@@ -3,6 +3,7 @@ package auctions;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import utils.Util;
 
 /**
  *
@@ -36,12 +37,15 @@ public class AuctionsData {
         List<Turmas> s1 = new ArrayList<>();
         s1.add(T1);
         s1.add(T2);
+        s1.add(T3);
         
         List<Turmas> s2 = new ArrayList<>();
         s2.add(T3);
         s2.add(T4);
+        s2.add(T5);
         
         List<Turmas> s3 = new ArrayList<>();
+        s3.add(T4);
         s3.add(T5);
         s3.add(T6);
         
@@ -49,14 +53,16 @@ public class AuctionsData {
         e.getPropostas().add(new Proposta(2, 6, s2));
         e.getPropostas().add(new Proposta(3, 7, s3));
         
-        e.estimarValorPropostas();
+        //e.escreverArquivo();
         
-        e.escreverArquivo();
+        Util.intersecaoListas(e);
+        e.toPrint();
     }
     
     public static void main(String[] args) throws IOException {
         AuctionsData ad = new AuctionsData();
         ad.popularDados();
+        
     }
     
 }

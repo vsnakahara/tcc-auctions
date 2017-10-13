@@ -4,9 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,10 +21,18 @@ public class Estrutura {
     private List<Proposta> propostas = new ArrayList<Proposta>();
 
     
-    public void estimarValorPropostas(){
+//    public void estimarValorPropostas(){
+//        for (Proposta p : this.getPropostas()) {
+//            p.setValorIndividual(p.getValor() / p.getTurmas().size());
+//            System.out.println("P"+p.getIdProfessor() + ", valor Individual: "+p.getValorIndividual());
+//        }
+//    
+//    }
+    
+    public void toPrint(){
         for (Proposta p : this.getPropostas()) {
-            p.setValorIndividual(p.getValor() / p.getTurmas().size());
-            System.out.println("P"+p.getIdProfessor() + ", valor Individual: "+p.getValorIndividual());
+            System.out.format("Prof id: %d | VL: %.2f | Vli: %.2f | ch: %d \n", 
+                    p.getIdProfessor(), p.getValor(), p.getValorIndividual(), p.getChTotal());
         }
     
     }
@@ -54,16 +60,6 @@ public class Estrutura {
     public void setPropostas(List<Proposta> propostas) {
         this.propostas = propostas;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

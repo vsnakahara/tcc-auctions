@@ -11,7 +11,7 @@ public class Proposta {
     // ScT
     //soma da carga horária semanal todal de um conjunto S
   
-    private Integer idProfessor;
+    private int idProfessor;
     private float valor;
     private float valorIndividual;
     private int chTotal; 
@@ -22,6 +22,7 @@ public class Proposta {
         this.valor = valor;
         this.turmas = turmas;
         this.chTotal = this.calcularCargaHoraria(turmas);
+        this.valorIndividual = this.calcularValorIndividual(turmas);
     }
 
     public Integer getIdProfessor() {
@@ -72,7 +73,14 @@ public class Proposta {
         for(int i = 0; i<t.size(); i++){
             total += t.get(i).getCh_turma();
         }
+        
         return total;
+    }
+    
+    public float calcularValorIndividual(List<Turmas> t){
+        
+        return this.getValor()/t.size();
+        
     }
 
     
