@@ -47,16 +47,15 @@ public class AuctionsData {
         
         
         List<Turmas> s3 = new ArrayList<>();
-        s3.add(T1);
         s3.add(T4);
-        s3.add(T5);
         s3.add(T6);
+        s3.add(T2);
         
         
+                
         e.getPropostas().add(new Proposta(1, 5, s1));
         e.getPropostas().add(new Proposta(2, 6, s2));
         e.getPropostas().add(new Proposta(3, 7, s3));
-        e.getPropostas().add(new Proposta(3, 8, s3));
         
         //e.escreverArquivo();
         

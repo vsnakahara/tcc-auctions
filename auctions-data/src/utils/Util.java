@@ -33,7 +33,7 @@ public class Util {
         for (int i = 0; i < a.size(); i++) {
             for (int j = 0; j < b.size(); j++) {
 
-                if (a.containsAll(b)) {
+                if (a.containsAll(b) && b.containsAll(a)) {
                     System.out.println("\nIntersecção Total: " + a.get(i).getNome());
                     System.out.println("Intersecção Total: " + b.get(j).getNome());
                 }
@@ -50,9 +50,11 @@ public class Util {
             for (int j = 1; j < e.getPropostas().size(); j++) {
 
                 if(i != j){
-                
-                    nova.addAll(interseccao(e.getPropostas().get(i).getTurmas(), 
-                                                e.getPropostas().get(j).getTurmas()));
+                    interseccaoTotal(e.getPropostas().get(i).getTurmas(), 
+                                                e.getPropostas().get(j).getTurmas());
+                    
+//                    nova.addAll(interseccao(e.getPropostas().get(i).getTurmas(), 
+//                                                e.getPropostas().get(j).getTurmas()));
                     
                 }
             }
