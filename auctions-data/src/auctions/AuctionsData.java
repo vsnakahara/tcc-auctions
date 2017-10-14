@@ -11,6 +11,8 @@ import utils.Util;
  */
 public class AuctionsData {
     
+    
+    
     public void popularDados() throws IOException{
         
         Turmas T1 = new Turmas(1, "FUNDAMENTOS DE ALGORITMOS", 6, 2);
@@ -59,7 +61,7 @@ public class AuctionsData {
         
         //e.escreverArquivo();
         
-        Util.intersecaoListas(e);
+        e.interseccaoListas(e);
         e.toPrint();
     }
     

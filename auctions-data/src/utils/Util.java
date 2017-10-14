@@ -42,26 +42,6 @@ public class Util {
         }
     }
 
-    public static void intersecaoListas(Estrutura e) {
-
-        Set<Turmas> nova = new HashSet<>();
-        
-        for (int i = 0; i < e.getPropostas().size() - 1; i++) {
-            for (int j = 1; j < e.getPropostas().size(); j++) {
-
-                if(i != j){
-                    interseccaoTotal(e.getPropostas().get(i).getTurmas(), 
-                                                e.getPropostas().get(j).getTurmas());
-                    
-//                    nova.addAll(interseccao(e.getPropostas().get(i).getTurmas(), 
-//                                                e.getPropostas().get(j).getTurmas()));
-                    
-                }
-            }
-        }
-
-        System.out.println("\ntam nova lista: " + nova.size()+"\n");
-
-    }
+    
 
 }

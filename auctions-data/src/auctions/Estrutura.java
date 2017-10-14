@@ -5,7 +5,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import utils.Util;
+import static utils.Util.interseccao;
 
 /**
  *
@@ -14,12 +18,16 @@ import java.util.List;
 public class Estrutura {
     
     //List para todas as turmas -> T conjunto de todas as turmas a serem distribuídos
-    private List<Turmas> turmas = new ArrayList<Turmas>();
+    private List<Turmas> turmas = new ArrayList<>();
     //List para todos os professores -> P é o conjunto de todos os professores a serem alocados
-    private List<Professor> professores = new ArrayList<Professor>();
+    private List<Professor> professores = new ArrayList<>();
     //list de Propostas Submetidas -> contém S turmas de interesse de um professor Pi.
-    private List<Proposta> propostas = new ArrayList<Proposta>();
+    private List<Proposta> propostas = new ArrayList<>();
 
+    private Set<Turmas> interseccaoListas = new HashSet<>();
+    
+    
+    
     
 //    public void estimarValorPropostas(){
 //        for (Proposta p : this.getPropostas()) {
@@ -37,29 +45,28 @@ public class Estrutura {
     
     }
     
-    public List<Turmas> getTurmas() {
-        return turmas;
-    }
+    public void interseccaoListas(Estrutura e) {
 
-    public void setTurmas(List<Turmas> turmas) {
-        this.turmas = turmas;
-    }
+        for (int i = 0; i < e.getPropostas().size() - 1; i++) {
+            for (int j = 1; j < e.getPropostas().size(); j++) {
 
-    public List<Professor> getProfessores() {
-        return professores;
-    }
+                if(i != j){
+//                    interseccaoTotal(e.getPropostas().get(i).getTurmas(), 
+//                                                e.getPropostas().get(j).getTurmas());
+                    
+                    this.getInterseccaoListas().addAll(Util.interseccao(e.getPropostas().get(i).getTurmas(), 
+                                                e.getPropostas().get(j).getTurmas()));
+                    
+                }
+            }
+        }
 
-    public void setProfessores(List<Professor> professores) {
-        this.professores = professores;
-    }
+        System.out.println("\ntam nova lista: " + this.getInterseccaoListas().size()+"\n");
 
-    public List<Proposta> getPropostas() {
-        return propostas;
     }
-
-    public void setPropostas(List<Proposta> propostas) {
-        this.propostas = propostas;
-    }
+    
+    
+    
     
     
     
@@ -94,5 +101,37 @@ public class Estrutura {
         
     }
     
+    
+    public List<Turmas> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(List<Turmas> turmas) {
+        this.turmas = turmas;
+    }
+
+    public List<Professor> getProfessores() {
+        return professores;
+    }
+
+    public void setProfessores(List<Professor> professores) {
+        this.professores = professores;
+    }
+
+    public List<Proposta> getPropostas() {
+        return propostas;
+    }
+
+    public void setPropostas(List<Proposta> propostas) {
+        this.propostas = propostas;
+    }
+
+    public Set<Turmas> getInterseccaoListas() {
+        return interseccaoListas;
+    }
+
+    public void setInterseccaoListas(Set<Turmas> interseccaoListas) {
+        this.interseccaoListas = interseccaoListas;
+    }
     
 }
