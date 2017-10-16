@@ -104,6 +104,16 @@ public class Turmas {
         return hash;
     }
     
+    public int compareTo(Turmas t) {
+        if (this.ch_turma < t.ch_turma) {
+            return -1;
+        }
+        if (this.ch_turma > t.ch_turma) {
+            return 1;
+        }
+        return 0;
+    }
+    
     
     
     

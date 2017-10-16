@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Set;
-import jdk.nashorn.internal.objects.NativeArray;
 import utils.Util;
 
 /**
@@ -57,11 +57,42 @@ public class Estrutura {
     public void balancearCargaHorariaProf(Estrutura e){
         for (Proposta proposta : e.getPropostas()) {
             //diminuir o máximo possível CH do subconjunto, de cada professor
+            calcularCH(proposta);          
             
+        }
+        
+        
+    }
+    
+    public void calcularCH(Proposta proposta){
+        //priority 
+        PriorityQueue<Turmas> Q = new PriorityQueue<>();
+        
+        for(Turmas turma : proposta.getTurmas()){
+            Q.add(turma);
+            //ideia Beligante!
+            //pegar Ch min do profº que submeteu a proposta
+            // enquanto ch min for respeitada, remover o menor da lista
+            //remover da lista de proposta(list[Turmas])
             
             
         }
+        
+        
+            
+        
     }
+    
+    
+    public void dividirEmSubconjuntos(Proposta proposta){
+        //pegar a Set<turmas> da intersecao
+        //percorrer listas
+        //se estiver na lista é removido da listaa
+        //adicionar como uma nova nova proposta
+        //setar o valor individual da turma, para cada professor. 
+    }
+    
+    
     
     
     
