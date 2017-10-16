@@ -48,6 +48,16 @@ public class Professor {
     public void sethMax(int hMax) {
         this.hMax = hMax;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
     
     
 }

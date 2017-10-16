@@ -4,7 +4,7 @@ package auctions;
  *
  * @author vanessa
  */
-public class Turmas {
+public class Turmas implements Comparable<Turmas>{
     
     
     private int id;
@@ -15,6 +15,12 @@ public class Turmas {
     private float valorEstimado;
     private float maiorValorEstimado;
     private float manorValorEstimado;
+
+    public Turmas() {
+        super();
+    }
+    
+    
     
     public Turmas(int id, String nome, int ch_turma, int semestre) {
         this.id = id;
@@ -104,6 +110,8 @@ public class Turmas {
         return hash;
     }
     
+    
+    @Override
     public int compareTo(Turmas t) {
         if (this.ch_turma < t.ch_turma) {
             return -1;
