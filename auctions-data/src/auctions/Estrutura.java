@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import jdk.nashorn.internal.objects.NativeArray;
 import utils.Util;
-import static utils.Util.interseccao;
 
 /**
  *
@@ -24,18 +24,7 @@ public class Estrutura {
     //list de Propostas Submetidas -> contém S turmas de interesse de um professor Pi.
     private List<Proposta> propostas = new ArrayList<>();
 
-    private Set<Turmas> interseccaoListas = new HashSet<>();
-    
-    
-    
-    
-//    public void estimarValorPropostas(){
-//        for (Proposta p : this.getPropostas()) {
-//            p.setValorIndividual(p.getValor() / p.getTurmas().size());
-//            System.out.println("P"+p.getIdProfessor() + ", valor Individual: "+p.getValorIndividual());
-//        }
-//    
-//    }
+    private Set<Turmas> interseccaoPropostas = new HashSet<>();
     
     public void toPrint(){
         for (Proposta p : this.getPropostas()) {
@@ -54,16 +43,27 @@ public class Estrutura {
 //                    interseccaoTotal(e.getPropostas().get(i).getTurmas(), 
 //                                                e.getPropostas().get(j).getTurmas());
                     
-                    this.getInterseccaoListas().addAll(Util.interseccao(e.getPropostas().get(i).getTurmas(), 
+                    this.getInterseccaoPropostas().addAll(Util.interseccao(e.getPropostas().get(i).getTurmas(), 
                                                 e.getPropostas().get(j).getTurmas()));
                     
                 }
             }
         }
 
-        System.out.println("\ntam nova lista: " + this.getInterseccaoListas().size()+"\n");
+        System.out.println("\ntam nova lista: " + this.getInterseccaoPropostas().size()+"\n");
 
     }
+    
+    public void balancearCargaHorariaProf(Estrutura e){
+        for (Proposta proposta : e.getPropostas()) {
+            //diminuir o máximo possível CH do subconjunto, de cada professor
+            
+            
+            
+        }
+    }
+    
+    
     
     
     
@@ -126,12 +126,14 @@ public class Estrutura {
         this.propostas = propostas;
     }
 
-    public Set<Turmas> getInterseccaoListas() {
-        return interseccaoListas;
+    public Set<Turmas> getInterseccaoPropostas() {
+        return interseccaoPropostas;
     }
 
-    public void setInterseccaoListas(Set<Turmas> interseccaoListas) {
-        this.interseccaoListas = interseccaoListas;
+    public void setInterseccaoPropostas(Set<Turmas> interseccaoPropostas) {
+        this.interseccaoPropostas = interseccaoPropostas;
     }
+
+    
     
 }
