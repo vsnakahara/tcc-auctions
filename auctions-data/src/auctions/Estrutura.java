@@ -44,6 +44,8 @@ public class Estrutura {
         System.out.println(" \t proposta: "+this.getPropostas().size());
         System.out.println(" \t list Turmas: "+this.getPropostas().get(0).getTurmas().size());
         System.out.println(" \t list Turmas2: "+this.getPropostas().get(1).getTurmas().size());
+        System.out.println("\n");
+        
         matriz = new int[this.getTurmas().size()][this.getPropostas().size()];
         
         for (int i = 0; i < this.getTurmas().size()-1; i++) {
