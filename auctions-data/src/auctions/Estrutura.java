@@ -37,81 +37,105 @@ public class Estrutura {
 
     }
 
-    public void preencherMatriz(Proposta proposta) {
-        //errado 
-        
+    public void preencherMatriz(List<Proposta> p) {
+        //matriz, com a ocorrência de turmas em cada proposta.
+        // última linha possui a soma de ocorrências
         System.out.println(" \t turmas: "+this.getTurmas().size());
         System.out.println(" \t proposta: "+this.getPropostas().size());
         System.out.println(" \t list Turmas: "+this.getPropostas().get(0).getTurmas().size());
-        System.out.println(" \t list Turmas2: "+this.getPropostas().get(1).getTurmas().size());
-        System.out.println("\n");
+        System.out.println(" \n");
         
-        matriz = new int[this.getTurmas().size()][this.getPropostas().size()];
+        matriz = new int[this.getPropostas().size()+1][this.getTurmas().size()];
+        //a matriz[numPropostas][totalDisciplinas]
         
-        for (int i = 0; i < this.getTurmas().size()-1; i++) {
-            for (int j = 0; j < proposta.getTurmas().size()-1; j++) {
-                if (this.getTurmas().get(i).getId() == proposta.getTurmas().get(j).getId()) {
-                    this.matriz[i][j] = 1;
-                } else {
-                    this.matriz[i][j] = 0;
+        for (int j = 0; j < p.size(); j++) {              
+            for (int i = 0; i < this.getTurmas().size(); i++) {
+                for(Turmas t: p.get(j).getTurmas()){
+                    if (t.getId() == this.getTurmas().get(i).getId()) {
+                        this.matriz[j][i] = 1;
+//                        System.out.println(" j: "+j+" i: "+i+" m: "+matriz[j][i]);
+                        this.matriz[p.size()][i] = matriz[p.size()][i] + 1; 
+//                        System.out.println(" j: "+i+" soma: "+matriz[p.size()][i]);
+                    } else {
+                        this.matriz[j][i] = 0;
+                    }
+                    
+                    
                 }
             }
         }
-        matrizToString(proposta, matriz);
     }
 
     
-    public void matrizToString(Proposta proposta, int matriz[][]) {
-        String retStr = "";
-        for (int i = 0; i < this.getTurmas().size()-1; i++) {
-            for (int j = 0; j < proposta.getTurmas().size()-1; j++) {
-
-                retStr += Integer.toString(matriz[i][j]);
-                retStr += " ";
-            }
-        }
-        System.out.println(retStr.trim());
-
-    }
-
-//    public void toPrinTurmas(List<Turmas> t){
-//        for (Turmas turma : t) {
-//            System.out.format("Prof id: %d | VL: %.2f | Vli: %.2f | ch: %d \n", 
-//                    p.getIdProfessor(), p.getValor(), p.getValorIndividual(), p.getChTotal());
-//        }
-//    
-//    }
-    public void interseccaoListas(Estrutura e) {
-
-        for (int i = 0; i < e.getPropostas().size() - 1; i++) {
-            for (int j = 1; j < e.getPropostas().size(); j++) {
-
-                if (i != j) {
-//                    interseccaoTotal(e.getPropostas().get(i).getTurmas(), 
-//                                                e.getPropostas().get(j).getTurmas());
-
-                    this.getInterseccaoPropostas().addAll(Util.interseccao(e.getPropostas().get(i).getTurmas(),
-                            e.getPropostas().get(j).getTurmas()));
-
-                }
-            }
-        }
-
-//        System.out.println("\ntam nova lista: " + this.getInterseccaoPropostas().size() + "\n");
-    }
-
     public void balancearCargaHorariaProf(Estrutura e) {
         for (int i = 0; i < this.getPropostas().size() - 1; i++) {
 
             //diminuir o máximo possível CH do subconjunto, de cada professor
 //            calcularCH(proposta);
 //            System.out.println("******************************************************************");
-            dividirEmSubconjuntos(this.getPropostas().get(i));
-            e.toPrint();
+            preencherMatriz(e.getPropostas());
+            ocorrencias();
+            //e.toPrint();
+            //preencherMatriz(e.getPropostas());
         }
 
     }
+    
+    public void ocorrencias(){
+        int lastLine = this.getPropostas().size();
+        
+        for (int i = 0; i < this.getPropostas().size(); i++) {              
+            for (int j = 0; j < this.getTurmas().size(); j++) {
+                if(this.matriz[lastLine][j] > 1){
+                    System.out.println(" ii: "+i+" jj: "+j);
+                    //caso em que houve concorrência pela turma j
+                    calcularItemConcorrentes(i, j);
+                    System.out.println("\t\t\t\tentrei");
+                }
+                if(this.matriz[lastLine][j] == 0){
+                    //caso em que a turma j, não obteve proposta 
+                    calcularItemSemProposta(j);
+                    System.out.println("\t\t\t\tentrei4");
+                }
+                
+            }
+        }
+    }   
+    
+    public void calcularItemSemProposta(int id_turma){
+        this.getTurmas().get(id_turma).setValorEstimado((float)-1.00);
+//        System.out.println("Id: "+this.getTurmas().get(id_turma).getId());
+//        System.out.println("Novo valor: "+this.getTurmas().get(id_turma).getValorEstimado());
+        
+    }
+    
+    public void calcularItemConcorrentes(int id_proposta, int id_turma){
+        System.out.println("\t\t\t\tentrei2");
+        Turmas turma = this.getTurmas().get(id_turma);
+        System.out.println("\t\t\t"+id_turma);
+        if(this.getPropostas().get(id_proposta).getTurmas().equals(turma)){
+            System.out.println("\t\t\t\tentrei3");
+        
+            Turmas nova = this.getPropostas().get(id_proposta).getTurmas().remove(turma.getId());
+            
+            List<Turmas> l = new ArrayList<>();
+            l.add(nova);
 
+            this.getPropostas().add(new Proposta(this.getPropostas().get(id_proposta).getIdProfessor(), 
+                                                    this.getPropostas().get(id_proposta).getValorIndividual(), l));
+
+            
+            this.getPropostas().get(id_proposta).setChTotal(this.getPropostas().get(id_proposta).getChTotal() - nova.getCh_turma());
+            this.getPropostas().get(id_proposta).setValor((this.getPropostas().get(id_proposta).getValor() - (this.getPropostas().get(id_proposta).getValor() * 10) / 100));
+            this.getPropostas().get(id_proposta).setValorIndividual(this.getPropostas().get(id_proposta).getValor() / (this.getPropostas().get(id_proposta).getTurmas().size()));
+            
+            
+                        
+        }
+        
+    }
+    
+    
     public void calcularCH(Proposta proposta) {
         //priority queue
         PriorityQueue<Turmas> Q = new PriorityQueue<>();
@@ -162,47 +186,6 @@ public class Estrutura {
 
     }
 
-    public void dividirEmSubconjuntos(Proposta proposta) {
-        //pegar a Set<turmas> da intersecao
-        interseccaoListas(this);
-        Professor p = this.getProfessores().get(proposta.getIdProfessor());
-
-//        System.out.println("\nList size: "+proposta.getTurmas().size());
-//        System.out.println("\nSet size: "+this.getInterseccaoPropostas().size());
-        //percorrer listas
-        for (Turmas turmaProposta : proposta.getTurmas()) {
-//            System.out.println("\nentrei");
-
-            for (Turmas t : this.getInterseccaoPropostas()) {
-
-//                System.out.println("\nentrei2");
-//                System.out.println("id:" +t.getId());
-//                System.out.println("pid:" +turmaProposta.getId());
-                if (turmaProposta.getId() == t.getId()) {
-                    System.out.println("\nentrei3");
-                    //se estiver na lista é removido da listaa
-                    //adicionar como uma nova nova proposta
-                    //setar o valor individual da turma, para cada professor. 
-
-                    List<Turmas> l = new ArrayList<>();
-                    l.add(turmaProposta);
-
-                    this.getPropostas().add(new Proposta(p.getId(), proposta.getValorIndividual(), l));
-
-                    System.out.println("\nList size: " + this.getPropostas().size());
-                    System.out.println("\nTurmast size: " + proposta.getTurmas().size());
-
-                    proposta.getTurmas().remove(turmaProposta);
-
-                }
-
-            }
-//            
-        }
-
-        System.out.println("\nList size: " + this.getPropostas().size());
-
-    }
 
     public void escreverArquivo() throws IOException {
         String path = "/home/vanessa/Documentos/tcc-auctions/teste.lp";
@@ -273,6 +256,26 @@ public class Estrutura {
     public void setMatriz(int[][] matriz) {
         this.matriz = matriz;
     }
+    
+    public void interseccaoListas(Estrutura e) {
+
+        for (int i = 0; i < e.getPropostas().size() - 1; i++) {
+            for (int j = 1; j < e.getPropostas().size(); j++) {
+
+                if (i != j) {
+//                    interseccaoTotal(e.getPropostas().get(i).getTurmas(), 
+//                                                e.getPropostas().get(j).getTurmas());
+
+                    this.getInterseccaoPropostas().addAll(Util.interseccao(e.getPropostas().get(i).getTurmas(),
+                            e.getPropostas().get(j).getTurmas()));
+
+                }
+            }
+        }
+
+    }
+
+    
 
 }
 
@@ -287,6 +290,67 @@ public class Estrutura {
 
 */
 
+//    public void dividirEmSubconjuntos(Proposta proposta) {
+//        //pegar a Set<turmas> da intersecao
+//        interseccaoListas(this);
+//        Professor p = this.getProfessores().get(proposta.getIdProfessor());
+//
+////        System.out.println("\nList size: "+proposta.getTurmas().size());
+////        System.out.println("\nSet size: "+this.getInterseccaoPropostas().size());
+//        //percorrer listas
+//        for (Turmas turmaProposta : proposta.getTurmas()) {
+////            System.out.println("\nentrei");
+//
+//            for (Turmas t : this.getInterseccaoPropostas()) {
+//
+////                System.out.println("\nentrei2");
+////                System.out.println("id:" +t.getId());
+////                System.out.println("pid:" +turmaProposta.getId());
+//                if (turmaProposta.getId() == t.getId()) {
+//                    System.out.println("\nentrei3");
+//                    //se estiver na lista é removido da listaa
+//                    //adicionar como uma nova nova proposta
+//                    //setar o valor individual da turma, para cada professor. 
+//
+//                    List<Turmas> l = new ArrayList<>();
+//                    l.add(turmaProposta);
+//
+//                    this.getPropostas().add(new Proposta(p.getId(), proposta.getValorIndividual(), l));
+//
+//                    System.out.println("\nList size: " + this.getPropostas().size());
+//                    System.out.println("\nTurmast size: " + proposta.getTurmas().size());
+//
+//                    proposta.getTurmas().remove(turmaProposta);
+//
+//                }
+//
+//            }
+////            
+//        }
+//
+//        System.out.println("\nList size: " + this.getPropostas().size());
+//
+//    }
 
 
 
+//    public void matrizToString(int matriz[][]) {
+//        String retStr = "";
+//        for (int j = 0; j < this.getTurmas().size()-1; j++) {
+//            for (int i = 0; i < this.getTurmas().size()-1; i++) {
+//                retStr += Integer.toString(matriz[j][i]);
+//                retStr += " ";
+//                System.out.println(" j: "+j+" i: "+i+" m: "+matriz[j][i]);
+//            }
+//        }
+//        System.out.println(retStr.trim());
+//
+//    }
+
+//    public void toPrinTurmas(List<Turmas> t){
+//        for (Turmas turma : t) {
+//            System.out.format("Prof id: %d | VL: %.2f | Vli: %.2f | ch: %d \n", 
+//                    p.getIdProfessor(), p.getValor(), p.getValorIndividual(), p.getChTotal());
+//        }
+//    
+//    }

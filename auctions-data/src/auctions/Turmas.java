@@ -86,6 +86,13 @@ public class Turmas implements Comparable<Turmas>{
     }
 
     @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + this.id;
+        return hash;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -103,12 +110,7 @@ public class Turmas implements Comparable<Turmas>{
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + this.id;
-        return hash;
-    }
+    
     
     
     @Override
