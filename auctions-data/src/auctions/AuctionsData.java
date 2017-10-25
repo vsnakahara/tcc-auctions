@@ -23,7 +23,6 @@ public class AuctionsData {
         Turmas T6 = new Turmas(6, "LINGUAGENS FORMAIS E AUTOMATOS", 6, 2);
         Turmas T7 = new Turmas(7, "LINGUAGENS FORMAIS E AUTOMATOS", 6, 2);
         
-        
         Estrutura e = new Estrutura();        
         e.getTurmas().add(T0);
         e.getTurmas().add(T1);
@@ -33,7 +32,6 @@ public class AuctionsData {
         e.getTurmas().add(T5);
         e.getTurmas().add(T6);
         e.getTurmas().add(T7);
-        
         
         e.getProfessores().put(1, new Professor(1, "P1", 4, 10));
         e.getProfessores().put(2, new Professor(2, "P2", 4, 14));
@@ -51,24 +49,17 @@ public class AuctionsData {
         
         
         List<Turmas> s3 = new ArrayList<>();
+        s3.add(T2);
         s3.add(T4);
         s3.add(T6);
-        s3.add(T2);
         
-        
-                
         e.getPropostas().add(new Proposta(1, 5, s1));
         e.getPropostas().add(new Proposta(2, 6, s2));
         e.getPropostas().add(new Proposta(3, 7, s3));
         
-        //e.escreverArquivo();
-        
-        //e.interseccaoListas(e);
         e.toPrint();
-        
-//        e.balancearCargaHorariaProf(e);
         e.balancearCargaHorariaProf(e);
-        //e.preencherMatriz(e.getPropostas());
+        
     }
     
     public static void main(String[] args) throws IOException {
