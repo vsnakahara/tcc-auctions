@@ -50,18 +50,19 @@ public class Estrutura {
         matriz = new int[this.getPropostas().size() + 1][this.getTurmas().size()];
 
         //a matriz[numPropostas][totalDisciplinas]
-
-        for (int j = 0; j < p.size(); j++) {
-            for (int i = 0; i < this.getTurmas().size(); i++) {
-                for (Turmas t : p.get(j).getTurmas()) {
-                    if (t.getId() == this.getTurmas().get(i).getId()) {
-                        this.matriz[j][i] = 1;
-                        System.out.println(" j: "+j+" i: "+i+" m: "+matriz[j][i]);
-                        this.matriz[p.size()][i] = matriz[p.size()][i] + 1;
+        int lastLine = p.size();
+        for (int i = 0; i < p.size(); i++) {
+            for (int j = 0; j < this.getTurmas().size(); j++) {
+                for (Turmas t : p.get(i).getTurmas()) {
+                    if (t.getId() == this.getTurmas().get(j).getId()) {
+                        this.matriz[lastLine][j] = matriz[p.size()][j] + 1;
+                        this.matriz[i][j] = 1;
+                        System.out.println(" i: "+i+" j: "+j+" m: "+matriz[i][j]);
                         
-                        System.out.println(" j: "+i+" soma: "+matriz[p.size()][i]);
+                        
+                        System.out.println(" soma: "+matriz[p.size()][j]);
                     } else {
-                        this.matriz[j][i] = 0;
+                        this.matriz[i][j] = 0;
                     }
 
                 }
@@ -75,6 +76,7 @@ public class Estrutura {
         for (int i = 0; i < this.getPropostas().size()+1; i++) {
             for (int j = 0; j < this.getTurmas().size(); j++) {
                 System.out.println(" i: "+i+" j: "+j+" m: "+matriz[i][j]);
+                
                 retStr += Integer.toString(matriz[i][j]);
                 retStr += " ";
                 
