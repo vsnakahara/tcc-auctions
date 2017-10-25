@@ -48,6 +48,7 @@ public class Estrutura {
         System.out.println(" \n");
 
         matriz = new int[this.getPropostas().size() + 1][this.getTurmas().size()];
+
         //a matriz[numPropostas][totalDisciplinas]
 
         for (int j = 0; j < p.size(); j++) {
