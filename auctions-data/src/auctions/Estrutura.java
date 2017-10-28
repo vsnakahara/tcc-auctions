@@ -26,8 +26,6 @@ public class Estrutura {
     //list de Propostas Submetidas -> contém S turmas de interesse de um professor Pi.
     private List<Proposta> propostas = new ArrayList<>();
 
-    private Set<Turmas> interseccaoPropostas = new HashSet<>();
-
     int[][] matriz = null;
 
     public void toPrint() {
@@ -74,27 +72,6 @@ public class Estrutura {
         }
         System.out.println(retStr.trim());
 
-    }
-
-    public void limparListaTurmas() {
-        for (Proposta p : this.getPropostas()) {
-            for (Map.Entry<Integer,Turmas> i : p.getTurmas().entrySet()) {
-                
-                if (i.getValue().equals(null)) {
-                    //ele tá entrando aqui... mas tá dando false ali no remove...
-                    System.out.println("entrei");
-                    p.getTurmas().remove(i.getKey());
-                    
-                    
-
-                }
-
-
-            }
-            
-        }
-            
-        
     }
 
     public void balancearCargaHorariaProf(Estrutura e) {
@@ -153,6 +130,7 @@ public class Estrutura {
         try {
             Turmas turma = this.getTurmas().get(id_turma);
             Proposta p = this.getPropostas().get(id_proposta);
+            int indice = 0;
             
             for (Map.Entry<Integer,Turmas> i : p.getTurmas().entrySet()) {
                 System.out.println("entrei3");
@@ -165,7 +143,7 @@ public class Estrutura {
                     //Turmas no = new Turmas(-500+i, "", -10, -10);                 
                     
                     System.out.println("ID::: "+i.getKey());
-                    p.getTurmas().put(i.getKey(), null);
+                    indice = i.getKey();
                     
 
                     HashMap<Integer, Turmas> l = new HashMap<>();
@@ -180,6 +158,7 @@ public class Estrutura {
 
                 }
             }
+            p.getTurmas().remove(indice);
         } catch (NullPointerException e) {
             System.out.println("\t\t\t\t\t\tsaco..");
         }
@@ -460,14 +439,6 @@ public class Estrutura {
 
     public void setPropostas(List<Proposta> propostas) {
         this.propostas = propostas;
-    }
-
-    public Set<Turmas> getInterseccaoPropostas() {
-        return interseccaoPropostas;
-    }
-
-    public void setInterseccaoPropostas(Set<Turmas> interseccaoPropostas) {
-        this.interseccaoPropostas = interseccaoPropostas;
     }
 
     public int[][] getMatriz() {
