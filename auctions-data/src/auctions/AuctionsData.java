@@ -1,8 +1,8 @@
 package auctions;   
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+
 
 /**
  *
@@ -37,21 +37,21 @@ public class AuctionsData {
         e.getProfessores().put(2, new Professor(2, "P2", 4, 14));
         e.getProfessores().put(3, new Professor(3, "P3", 4, 14));
         
-        List<Turmas> s1 = new ArrayList<>();
-        s1.add(T1);
-        s1.add(T2);
-        s1.add(T3);
+        HashMap<Integer, Turmas> s1 = new HashMap<>();
+        s1.put(T1.getId(), T1);
+        s1.put(T2.getId(), T2);
+        s1.put(T3.getId(), T3);
         
-        List<Turmas> s2 = new ArrayList<>();
-        s2.add(T3);
-        s2.add(T4);
-        s2.add(T5);
+        HashMap<Integer, Turmas> s2 = new HashMap<>();
+        s2.put(T3.getId(), T3);
+        s2.put(T4.getId(), T4);
+        s2.put(T5.getId(), T5);
         
         
-        List<Turmas> s3 = new ArrayList<>();
-        s3.add(T2);
-        s3.add(T4);
-        s3.add(T6);
+        HashMap<Integer, Turmas> s3 = new HashMap<>();
+        s3.put(T2.getId(), T2);
+        s3.put(T4.getId(), T4);
+        s3.put(T6.getId(), T6);
         
         e.getPropostas().add(new Proposta(1, 15, s1));
         e.getPropostas().add(new Proposta(2, 15, s2));

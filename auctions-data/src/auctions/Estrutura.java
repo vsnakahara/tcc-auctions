@@ -50,9 +50,9 @@ public class Estrutura {
             for (int j = 0; j < this.getTurmas().size(); j++) {
                 this.matriz[i][j] = 0;
 
-                for (Turmas t : p.get(i).getTurmas()) {
+                for (Map.Entry<Integer,Turmas> t : p.get(i).getTurmas().entrySet()) {
 
-                    if ((t != null) && t.getId() == this.getTurmas().get(j).getId()) {
+                    if ((t != null) && t.getKey() == this.getTurmas().get(j).getId()) {
                         this.matriz[i][j] = 1;
                         this.matriz[lastLine][j] = matriz[p.size()][j] + 1;
                     }
@@ -78,13 +78,13 @@ public class Estrutura {
 
     public void limparListaTurmas() {
         for (Proposta p : this.getPropostas()) {
-            for (int j = p.getTurmas().size()-1; j > 0; j--) {
+            for (Map.Entry<Integer,Turmas> i : p.getTurmas().entrySet()) {
                 
-                if (p.getTurmas().get(j).getCh_turma() == -10 && p.getTurmas().get(j).getSemestre() == -10) {
-
+                if (i.getValue().equals(null)) {
+                    //ele tá entrando aqui... mas tá dando false ali no remove...
                     System.out.println("entrei");
-                    boolean Q = p.getTurmas().remove(getTurmas().get(j));
-                    System.out.println("Q: "+Q);
+                    p.getTurmas().remove(i.getKey());
+                    
                     
 
                 }
@@ -105,7 +105,7 @@ public class Estrutura {
 //            System.out.println("******************************************************************");
         preencherMatriz(e.getPropostas());
         ocorrencias();
-        limparListaTurmas();
+        //limparListaTurmas();
         //preencherMatriz(e.getPropostas());
         
         //preencherMatriz(e.getPropostas());
@@ -154,18 +154,24 @@ public class Estrutura {
             Turmas turma = this.getTurmas().get(id_turma);
             Proposta p = this.getPropostas().get(id_proposta);
             
-            for (int i = 0; i < p.getTurmas().size(); i++) {
-                if (p.getTurmas().get(i)!= null && p.getTurmas().get(i).getId() == turma.getId()) {
+            for (Map.Entry<Integer,Turmas> i : p.getTurmas().entrySet()) {
+                System.out.println("entrei3");
+                if (i.getKey() == turma.getId()) {
                     
-                    Turmas nova = p.getTurmas().get(i);
-                    Turmas no = new Turmas(-100+i, "", -10, -10);
+                    Turmas nova = p.getTurmas().get(i.getKey());
                     
+                    //to dando override nessa posição em vez de usar null, to usando esse no
                     
-                    p.getTurmas().set(i, no);
+                    //Turmas no = new Turmas(-500+i, "", -10, -10);                 
+                    
+                    System.out.println("ID::: "+i.getKey());
+                    p.getTurmas().put(i.getKey(), null);
+                    
 
-                    List<Turmas> l = new ArrayList<>();
-                    l.add(nova);
+                    HashMap<Integer, Turmas> l = new HashMap<>();
+                    l.put(1, nova);
 
+                    //até aqui ele entra certo, e cria certo 
                     this.getPropostas().add(new Proposta(p.getIdProfessor(),
                             p.getValorIndividual(), l));
                     this.getPropostas().get(id_proposta).setChTotal(p.getChTotal() - nova.getCh_turma());
@@ -261,7 +267,7 @@ public class Estrutura {
 
         for (Turmas t : this.getTurmas()) {
             for (Proposta p : this.getPropostas()) {
-                if (p.getTurmas().contains(t)) {
+                if (p.getTurmas().keySet().equals(t.getId())) {
                     sb.append("P" + p.getIdProfessor()
                             + p.showItens(p.getTurmas()) + " + ");
                     temProposta = true;
@@ -426,7 +432,7 @@ public class Estrutura {
 //            long end = System.currentTimeMillis();
 //            writer.write("Tempo de gravação: " + (end - begin) + "ms.");
         }
-        System.out.println("Arquivo gravado em: " + path);
+        System.out.println("\n\n\n\nArquivo gravado em: " + path);
 
     }
     
@@ -472,23 +478,23 @@ public class Estrutura {
         this.matriz = matriz;
     }
 
-    public void interseccaoListas(Estrutura e) {
-
-        for (int i = 0; i < e.getPropostas().size() - 1; i++) {
-            for (int j = 1; j < e.getPropostas().size(); j++) {
-
-                if (i != j) {
-//                    interseccaoTotal(e.getPropostas().get(i).getTurmas(), 
-//                                                e.getPropostas().get(j).getTurmas());
-
-                    this.getInterseccaoPropostas().addAll(Util.interseccao(e.getPropostas().get(i).getTurmas(),
-                            e.getPropostas().get(j).getTurmas()));
-
-                }
-            }
-        }
-
-    }
+//    public void interseccaoListas(Estrutura e) {
+//
+//        for (int i = 0; i < e.getPropostas().size() - 1; i++) {
+//            for (int j = 1; j < e.getPropostas().size(); j++) {
+//
+//                if (i != j) {
+////                    interseccaoTotal(e.getPropostas().get(i).getTurmas(), 
+////                                                e.getPropostas().get(j).getTurmas());
+//
+//                    this.getInterseccaoPropostas().addAll(Util.interseccao(e.getPropostas().get(i).getTurmas(),
+//                            e.getPropostas().get(j).getTurmas()));
+//
+//                }
+//            }
+//        }
+//
+//    }
 
 }
 
