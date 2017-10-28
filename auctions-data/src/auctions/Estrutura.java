@@ -99,18 +99,18 @@ public class Estrutura {
                 for (int j = 0; j < this.getTurmas().size(); j++) {
                     if (this.matriz[i][j] == 1 && this.matriz[lastLine][j] > 1) {
                         //caso em que houve concorrência pela turma j
-                        System.out.println("( = 1 )"+ " i: "+ i + " j: "+j);
+//                        System.out.println("( = 1 )"+ " i: "+ i + " j: "+j);
                         calcularItemConcorrentes(i, j);
                         
 
                     }
-//                    if (this.matriz[lastLine][j] == 0) {
-//                        //caso em que a turma j, não obteve proposta 
-//                        
+                    if (this.matriz[lastLine][j] == 0) {
+                        //caso em que a turma j, não obteve proposta 
+                        
 //                        System.out.println("( = 0 )"+ " i: "+ i + " j: "+j);
-//                        calcularItemSemProposta(j);
-//
-//                    }
+                        calcularItemSemProposta(j);
+
+                    }
 
                 }
             }
@@ -120,7 +120,7 @@ public class Estrutura {
 
     public void calcularItemSemProposta(int id_turma) {
         this.getTurmas().get(id_turma).setValorEstimado((float)-(15 * 10) / 100);
-        System.out.println("\t\t\tentrei1");
+        
 //        System.out.println("Id: "+this.getTurmas().get(id_turma).getId());
 //        System.out.println("Novo valor: "+this.getTurmas().get(id_turma).getValorEstimado());
 
@@ -133,7 +133,7 @@ public class Estrutura {
             int indice = 0;
             
             for (Map.Entry<Integer,Turmas> i : p.getTurmas().entrySet()) {
-                System.out.println("entrei3");
+                
                 if (i.getKey() == turma.getId()) {
                     
                     Turmas nova = p.getTurmas().get(i.getKey());
@@ -142,7 +142,7 @@ public class Estrutura {
                     
                     //Turmas no = new Turmas(-500+i, "", -10, -10);                 
                     
-                    System.out.println("ID::: "+i.getKey());
+                    //System.out.println("ID::: "+i.getKey());
                     indice = i.getKey();
                     
 
@@ -247,6 +247,7 @@ public class Estrutura {
         for (Turmas t : this.getTurmas()) {
             for (Proposta p : this.getPropostas()) {
                 if (p.getTurmas().keySet().equals(t.getId())) {
+                    System.out.println("cagar viu...");
                     sb.append("P" + p.getIdProfessor()
                             + p.showItens(p.getTurmas()) + " + ");
                     temProposta = true;
