@@ -54,14 +54,14 @@ public class AuctionsData {
         s3.add(T6);
         
         e.getPropostas().add(new Proposta(1, 15, s1));
-        e.getPropostas().add(new Proposta(1, 15, s2));
+        e.getPropostas().add(new Proposta(2, 15, s2));
         e.getPropostas().add(new Proposta(3, 15, s3));
         
-        //e.toPrint();
+        e.toPrint();
         //System.out.println("**********************");
         e.balancearCargaHorariaProf(e);
         //System.out.println("******************************************************************");
-        //e.toPrint();
+        e.toPrint();
         
         
         e.escreverArquivo();

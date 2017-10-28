@@ -32,8 +32,9 @@ public class Estrutura {
 
     public void toPrint() {
         for (Proposta p : this.getPropostas()) {
-            System.out.format("Prof id: %d | VL: %.2f | Vli: %.2f | ch: %d | sizeTurma: %d\n",
-                    p.getIdProfessor(), p.getValor(), p.getValorIndividual(), p.getChTotal(), p.getTurmas().size());
+            System.out.format("Prof id: %d | VL: %.2f | Vli: %.2f | ch: %d | sizeTurma: %d | Turmas: %s\n",
+                    p.getIdProfessor(), p.getValor(), p.getValorIndividual(), p.getChTotal(), 
+                    p.getTurmas().size(), p.showItens(p.getTurmas()));
         }
 
     }
@@ -77,30 +78,38 @@ public class Estrutura {
 
     public void limparListaTurmas() {
         for (Proposta p : this.getPropostas()) {
-            for (int j = 0; j < p.getTurmas().size() - 1; j++) {
-                if (p.getTurmas().get(j) == null) {
-                    p.getTurmas().remove(j);
+            for (int j = p.getTurmas().size()-1; j > 0; j--) {
+                
+                if (p.getTurmas().get(j).getCh_turma() == -10 && p.getTurmas().get(j).getSemestre() == -10) {
+
+                    System.out.println("entrei");
+                    boolean Q = p.getTurmas().remove(getTurmas().get(j));
+                    System.out.println("Q: "+Q);
+                    
 
                 }
 
-            }
-        }
 
+            }
+            
+        }
+            
+        
     }
 
     public void balancearCargaHorariaProf(Estrutura e) {
-        for (int i = 0; i < this.getPropostas().size() - 1; i++) {
+        
 
-            //diminuir o máximo possível CH do subconjunto, de cada professor
+        //diminuir o máximo possível CH do subconjunto, de cada professor
 //            calcularCH(proposta);
 //            System.out.println("******************************************************************");
-            preencherMatriz(e.getPropostas());
-            ocorrencias();
-            limparListaTurmas();
-            //preencherMatriz(e.getPropostas());
-            e.toPrint();
-            //preencherMatriz(e.getPropostas());
-        }
+        preencherMatriz(e.getPropostas());
+        ocorrencias();
+        limparListaTurmas();
+        //preencherMatriz(e.getPropostas());
+        
+        //preencherMatriz(e.getPropostas());
+        
 
     }
 
@@ -111,17 +120,20 @@ public class Estrutura {
             for (int i = 0; i < this.getPropostas().size(); i++) {
 
                 for (int j = 0; j < this.getTurmas().size(); j++) {
-                    System.out.println("\n\nj:" + j);
                     if (this.matriz[i][j] == 1 && this.matriz[lastLine][j] > 1) {
                         //caso em que houve concorrência pela turma j
+                        System.out.println("( = 1 )"+ " i: "+ i + " j: "+j);
                         calcularItemConcorrentes(i, j);
+                        
 
                     }
-                    if (this.matriz[lastLine][j] == 0) {
-                        //caso em que a turma j, não obteve proposta 
-                        calcularItemSemProposta(j);
-
-                    }
+//                    if (this.matriz[lastLine][j] == 0) {
+//                        //caso em que a turma j, não obteve proposta 
+//                        
+//                        System.out.println("( = 0 )"+ " i: "+ i + " j: "+j);
+//                        calcularItemSemProposta(j);
+//
+//                    }
 
                 }
             }
@@ -130,7 +142,8 @@ public class Estrutura {
     }
 
     public void calcularItemSemProposta(int id_turma) {
-        this.getTurmas().get(id_turma).setValorEstimado((float) -1.00);
+        this.getTurmas().get(id_turma).setValorEstimado((float)-(15 * 10) / 100);
+        System.out.println("\t\t\tentrei1");
 //        System.out.println("Id: "+this.getTurmas().get(id_turma).getId());
 //        System.out.println("Novo valor: "+this.getTurmas().get(id_turma).getValorEstimado());
 
@@ -139,28 +152,30 @@ public class Estrutura {
     public void calcularItemConcorrentes(int id_proposta, int id_turma) {
         try {
             Turmas turma = this.getTurmas().get(id_turma);
-            System.out.println("\t\t\tID_TURMA " + id_turma);
-            System.out.println("\t\t turma size: " + this.getPropostas().get(id_proposta).getTurmas().size());
-
-            for (int i = 0; i < this.getPropostas().get(id_proposta).getTurmas().size() - 1; i++) {
-                if (this.getPropostas().get(id_proposta).getTurmas().get(i).getId() == turma.getId()) {
-                    System.out.println("\t\t\t\tentrei3");
-
-                    Turmas nova = this.getPropostas().get(id_proposta).getTurmas().get(i);
-                    this.getPropostas().get(id_proposta).getTurmas().set(i, null);
+            Proposta p = this.getPropostas().get(id_proposta);
+            
+            for (int i = 0; i < p.getTurmas().size(); i++) {
+                if (p.getTurmas().get(i)!= null && p.getTurmas().get(i).getId() == turma.getId()) {
+                    
+                    Turmas nova = p.getTurmas().get(i);
+                    Turmas no = new Turmas(-100+i, "", -10, -10);
+                    
+                    
+                    p.getTurmas().set(i, no);
 
                     List<Turmas> l = new ArrayList<>();
                     l.add(nova);
 
-                    this.getPropostas().add(new Proposta(this.getPropostas().get(id_proposta).getIdProfessor(),
-                            this.getPropostas().get(id_proposta).getValorIndividual(), l));
-                    this.getPropostas().get(id_proposta).setChTotal(this.getPropostas().get(id_proposta).getChTotal() - nova.getCh_turma());
-                    this.getPropostas().get(id_proposta).setValor((this.getPropostas().get(id_proposta).getValor() - (this.getPropostas().get(id_proposta).getValor() * 10) / 100));
-                    this.getPropostas().get(id_proposta).setValorIndividual(this.getPropostas().get(id_proposta).getValor() / (this.getPropostas().get(id_proposta).getTurmas().size()));
+                    this.getPropostas().add(new Proposta(p.getIdProfessor(),
+                            p.getValorIndividual(), l));
+                    this.getPropostas().get(id_proposta).setChTotal(p.getChTotal() - nova.getCh_turma());
+                    this.getPropostas().get(id_proposta).setValor((p.getValor() - (this.getPropostas().get(id_proposta).getValor() * 10) / 100));
+                    this.getPropostas().get(id_proposta).setValorIndividual(p.getValor() / (this.getPropostas().get(id_proposta).getTurmas().size()));
 
                 }
             }
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
+            System.out.println("\t\t\t\t\t\tsaco..");
         }
 
     }
@@ -225,7 +240,7 @@ public class Estrutura {
         for (Turmas t : this.getTurmas()) {
             if (t.getValorEstimado() != 0.00) {
                 for (Map.Entry<Integer, Professor> prof : this.getProfessores().entrySet()) {
-                    sb.append(" - " + t.getValorEstimado() + " P" + prof.getKey() + "T" + t.getId());
+                    sb.append(t.getValorEstimado() + " P" + prof.getKey() + "T" + t.getId()+" ");
                 }
             }
 
@@ -247,7 +262,7 @@ public class Estrutura {
         for (Turmas t : this.getTurmas()) {
             for (Proposta p : this.getPropostas()) {
                 if (p.getTurmas().contains(t)) {
-                    sb.append(" P" + p.getIdProfessor()
+                    sb.append("P" + p.getIdProfessor()
                             + p.showItens(p.getTurmas()) + " + ");
                     temProposta = true;
                 } 
@@ -266,7 +281,7 @@ public class Estrutura {
         for (Turmas t : this.getTurmas()) {
             if (t.getValorEstimado() != 0.00) {
                 for (Map.Entry<Integer, Professor> prof : this.getProfessores().entrySet()) {
-                    sb.append(" P" + prof.getKey() + "T" + t.getId()+" + ");
+                    sb.append("P" + prof.getKey() + "T" + t.getId()+" + ");
                     temProposta = true;
                 }
             }
@@ -399,7 +414,7 @@ public class Estrutura {
             writer.newLine();
             writer.write("BINARY");
             writer.newLine();
-            writer.write("\n" + printVarBinary());
+            writer.write("\n" + printVarBinary()+"\n");
             writer.newLine();
             writer.write("END");
             //Criando o conteúdo do arquivo
@@ -414,6 +429,8 @@ public class Estrutura {
         System.out.println("Arquivo gravado em: " + path);
 
     }
+    
+    //getters e setters
 
     public List<Turmas> getTurmas() {
         return turmas;
