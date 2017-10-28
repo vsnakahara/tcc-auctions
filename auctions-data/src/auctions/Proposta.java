@@ -82,6 +82,15 @@ public class Proposta {
         return this.getValor()/t.size();
         
     }
-
+    
+    public String showItens(List<Turmas> t){
+        StringBuilder id_turmas = new StringBuilder();
+        for(Turmas turma: t){
+            id_turmas.append("T").append(turma.getId());
+        }
+        return id_turmas.toString();
+    }
+    
+    
     
 }

@@ -12,7 +12,7 @@ public class Turmas implements Comparable<Turmas>{
     private int ch_turma;
     private int semestre;
     
-    private float valorEstimado;
+    private float valorEstimado = 0.00f;
     private float maiorValorEstimado;
     private float manorValorEstimado;
 

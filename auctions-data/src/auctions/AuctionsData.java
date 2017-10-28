@@ -53,12 +53,23 @@ public class AuctionsData {
         s3.add(T4);
         s3.add(T6);
         
-        e.getPropostas().add(new Proposta(1, 5, s1));
-        e.getPropostas().add(new Proposta(2, 6, s2));
-        e.getPropostas().add(new Proposta(3, 7, s3));
+        e.getPropostas().add(new Proposta(1, 15, s1));
+        e.getPropostas().add(new Proposta(1, 15, s2));
+        e.getPropostas().add(new Proposta(3, 15, s3));
         
-        e.toPrint();
+        //e.toPrint();
+        //System.out.println("**********************");
         e.balancearCargaHorariaProf(e);
+        //System.out.println("******************************************************************");
+        //e.toPrint();
+        
+        
+        e.escreverArquivo();
+        
+        //Proposta p = new Proposta(1, 10, s1);
+        //p.showItens(s1);
+        
+        
         
     }
     
