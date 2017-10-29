@@ -6,12 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
-import java.util.Set;
-import utils.Util;
 
 /**
  *
@@ -246,8 +243,8 @@ public class Estrutura {
 
         for (Turmas t : this.getTurmas()) {
             for (Proposta p : this.getPropostas()) {
-                if (p.getTurmas().keySet().equals(t.getId())) {
-                    System.out.println("cagar viu...");
+                
+                if (p.getTurmas().containsValue(t)) {
                     sb.append("P" + p.getIdProfessor()
                             + p.showItens(p.getTurmas()) + " + ");
                     temProposta = true;
@@ -288,12 +285,16 @@ public class Estrutura {
     public String printRestricaoProfessorSubconjuntos() {
         StringBuilder sb = new StringBuilder();
         boolean temProposta = false;
-
         for (Map.Entry<Integer, Professor> prof : this.getProfessores().entrySet()) {
             for (Proposta p : this.getPropostas()) {
                 if (prof.getKey() == p.getIdProfessor()) {
                     sb.append("P").append(prof.getKey()).append(p.showItens(p.getTurmas())).append(" + ");
                     temProposta = true;
+                }
+            }
+            for (Turmas t : this.getTurmas()) {
+                if (t.getValorEstimado() != 0.00) {
+                    sb.append(" P" + prof.getKey() + "T" + t.getId()+" + ");
                 }
             }
             if (temProposta) {
@@ -309,6 +310,8 @@ public class Estrutura {
         return sb.toString();
     }
 
+    //falta novas variaveis nas CHs
+        
     public String printChMin() {
         StringBuilder sb = new StringBuilder();
         boolean temProposta = false;
@@ -319,8 +322,13 @@ public class Estrutura {
                     sb.append(p.getChTotal() + " P" + p.getIdProfessor() + p.showItens(p.getTurmas()) + " + ");
                     temProposta = true;
                 }
-
+//                for (Turmas t : this.getTurmas()) {
+//                    if (t.getValorEstimado() != 0.00) {
+//                        sb.append(t.getCh_turma() + " P" + prof.getKey() + "T" + t.getId()+" + ");
+//                    }
+//                }
             }
+            
             if (temProposta) {
                 int ind = sb.toString().lastIndexOf("+ ");
                 if (ind >= 0) {
@@ -344,6 +352,12 @@ public class Estrutura {
                     sb.append(p.getChTotal() + " P" + p.getIdProfessor() + p.showItens(p.getTurmas()) + " + ");
                     temProposta = true;
                 }
+//                for (Turmas t : this.getTurmas()) {
+//                    if (t.getValorEstimado() != 0.00) {
+//                        sb.append(t.getCh_turma() + " P" + prof.getKey() + "T" + t.getId()+" + ");
+//                    }
+//                    temProposta = true;
+//                }
 
             }
             if (temProposta) {
@@ -369,12 +383,18 @@ public class Estrutura {
                 }
 
             }
+            
+            for (Turmas t : this.getTurmas()) {
+                if (t.getValorEstimado() != 0.00) {
+                    sb.append(" P" + prof.getKey() + "T" + t.getId()+" ");
+                }
+            }
         }
         return sb.toString();
     }
 
     public void escreverArquivo() throws IOException {
-        String path = "/home/vanessa/Documentos/tcc-auctions/teste2.lp";
+        String path = "/home/vanessa/Documentos/tcc-auctions/teste3.lp";
 
         File file = new File(path);
         long begin = System.currentTimeMillis();
