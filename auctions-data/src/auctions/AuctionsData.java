@@ -66,11 +66,6 @@ public class AuctionsData {
         
         e.escreverArquivo();
         
-        //Proposta p = new Proposta(1, 10, s1);
-        //p.showItens(s1);
-        
-        
-        
     }
     
     public static void main(String[] args) throws IOException {

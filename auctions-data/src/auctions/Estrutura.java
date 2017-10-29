@@ -28,7 +28,7 @@ public class Estrutura {
     public void toPrint() {
         for (Proposta p : this.getPropostas()) {
             System.out.format("Prof id: %d | VL: %.2f | Vli: %.2f | ch: %d | sizeTurma: %d | Turmas: %s\n",
-                    p.getIdProfessor(), p.getValor(), p.getValorIndividual(), p.getChTotal(), 
+                    p.getIdProfessor(), p.getValor(), p.getValorIndividual(), p.getChTotal(),
                     p.getTurmas().size(), p.showItens(p.getTurmas()));
         }
 
@@ -45,7 +45,7 @@ public class Estrutura {
             for (int j = 0; j < this.getTurmas().size(); j++) {
                 this.matriz[i][j] = 0;
 
-                for (Map.Entry<Integer,Turmas> t : p.get(i).getTurmas().entrySet()) {
+                for (Map.Entry<Integer, Turmas> t : p.get(i).getTurmas().entrySet()) {
 
                     if ((t != null) && t.getKey() == this.getTurmas().get(j).getId()) {
                         this.matriz[i][j] = 1;
@@ -72,7 +72,6 @@ public class Estrutura {
     }
 
     public void balancearCargaHorariaProf(Estrutura e) {
-        
 
         //diminuir o máximo possível CH do subconjunto, de cada professor
 //            calcularCH(proposta);
@@ -81,10 +80,8 @@ public class Estrutura {
         ocorrencias();
         //limparListaTurmas();
         //preencherMatriz(e.getPropostas());
-        
-        //preencherMatriz(e.getPropostas());
-        
 
+        //preencherMatriz(e.getPropostas());
     }
 
     public void ocorrencias() {
@@ -98,12 +95,11 @@ public class Estrutura {
                         //caso em que houve concorrência pela turma j
 //                        System.out.println("( = 1 )"+ " i: "+ i + " j: "+j);
                         calcularItemConcorrentes(i, j);
-                        
 
                     }
                     if (this.matriz[lastLine][j] == 0) {
                         //caso em que a turma j, não obteve proposta 
-                        
+
 //                        System.out.println("( = 0 )"+ " i: "+ i + " j: "+j);
                         calcularItemSemProposta(j);
 
@@ -116,11 +112,10 @@ public class Estrutura {
     }
 
     public void calcularItemSemProposta(int id_turma) {
-        this.getTurmas().get(id_turma).setValorEstimado((float)-(15 * 10) / 100);
-        
+        this.getTurmas().get(id_turma).setValorEstimado((float) -(15 * 10) / 100);
+
 //        System.out.println("Id: "+this.getTurmas().get(id_turma).getId());
 //        System.out.println("Novo valor: "+this.getTurmas().get(id_turma).getValorEstimado());
-
     }
 
     public void calcularItemConcorrentes(int id_proposta, int id_turma) {
@@ -128,20 +123,17 @@ public class Estrutura {
             Turmas turma = this.getTurmas().get(id_turma);
             Proposta p = this.getPropostas().get(id_proposta);
             int indice = 0;
-            
-            for (Map.Entry<Integer,Turmas> i : p.getTurmas().entrySet()) {
-                
+
+            for (Map.Entry<Integer, Turmas> i : p.getTurmas().entrySet()) {
+
                 if (i.getKey() == turma.getId()) {
-                    
+
                     Turmas nova = p.getTurmas().get(i.getKey());
-                    
+
                     //to dando override nessa posição em vez de usar null, to usando esse no
-                    
                     //Turmas no = new Turmas(-500+i, "", -10, -10);                 
-                    
                     //System.out.println("ID::: "+i.getKey());
                     indice = i.getKey();
-                    
 
                     HashMap<Integer, Turmas> l = new HashMap<>();
                     l.put(1, nova);
@@ -149,15 +141,19 @@ public class Estrutura {
                     //até aqui ele entra certo, e cria certo 
                     this.getPropostas().add(new Proposta(p.getIdProfessor(),
                             p.getValorIndividual(), l));
+
                     this.getPropostas().get(id_proposta).setChTotal(p.getChTotal() - nova.getCh_turma());
                     this.getPropostas().get(id_proposta).setValor((p.getValor() - (this.getPropostas().get(id_proposta).getValor() * 10) / 100));
-                    this.getPropostas().get(id_proposta).setValorIndividual(p.getValor() / (this.getPropostas().get(id_proposta).getTurmas().size()));
 
                 }
             }
+
             p.getTurmas().remove(indice);
+            this.getPropostas().get(id_proposta).setValorIndividual(p.getValor()
+                    / (this.getPropostas().get(id_proposta).getTurmas().size()));
+
         } catch (NullPointerException e) {
-            System.out.println("\t\t\t\t\t\tsaco..");
+            e.printStackTrace();
         }
 
     }
@@ -222,7 +218,7 @@ public class Estrutura {
         for (Turmas t : this.getTurmas()) {
             if (t.getValorEstimado() != 0.00) {
                 for (Map.Entry<Integer, Professor> prof : this.getProfessores().entrySet()) {
-                    sb.append(t.getValorEstimado() + " P" + prof.getKey() + "T" + t.getId()+" ");
+                    sb.append(t.getValorEstimado() + " P" + prof.getKey() + "T" + t.getId() + " ");
                 }
             }
 
@@ -233,7 +229,7 @@ public class Estrutura {
         if (ind >= 0) {
             sb = new StringBuilder(sb).replace(ind, ind + 1, "");
         }
-        return sb.toString();
+        return sb.append(";").toString();
 
     }
 
@@ -243,12 +239,12 @@ public class Estrutura {
 
         for (Turmas t : this.getTurmas()) {
             for (Proposta p : this.getPropostas()) {
-                
+
                 if (p.getTurmas().containsValue(t)) {
                     sb.append("P" + p.getIdProfessor()
                             + p.showItens(p.getTurmas()) + " + ");
                     temProposta = true;
-                } 
+                }
 
             }
             if (temProposta) {
@@ -256,15 +252,15 @@ public class Estrutura {
                 if (ind >= 0) {
                     sb = new StringBuilder(sb).replace(ind, ind + 1, "");
                 }
-                sb.append("= 1\n");
+                sb.append("= 1;\n");
             }
             temProposta = false;
         }
-        
+
         for (Turmas t : this.getTurmas()) {
             if (t.getValorEstimado() != 0.00) {
                 for (Map.Entry<Integer, Professor> prof : this.getProfessores().entrySet()) {
-                    sb.append("P" + prof.getKey() + "T" + t.getId()+" + ");
+                    sb.append("P" + prof.getKey() + "T" + t.getId() + " + ");
                     temProposta = true;
                 }
             }
@@ -273,7 +269,7 @@ public class Estrutura {
                 if (ind >= 0) {
                     sb = new StringBuilder(sb).replace(ind, ind + 1, "");
                 }
-                sb.append("= 1\n");
+                sb.append("= 1;\n");
             }
             temProposta = false;
 
@@ -294,7 +290,7 @@ public class Estrutura {
             }
             for (Turmas t : this.getTurmas()) {
                 if (t.getValorEstimado() != 0.00) {
-                    sb.append(" P" + prof.getKey() + "T" + t.getId()+" + ");
+                    sb.append(" P" + prof.getKey() + "T" + t.getId() + " + ");
                 }
             }
             if (temProposta) {
@@ -302,7 +298,7 @@ public class Estrutura {
                 if (ind >= 0) {
                     sb = new StringBuilder(sb).replace(ind, ind + 1, "");
                 }
-                sb.append(">= 1\n");
+                sb.append(">= 1;\n");
             }
             temProposta = false;
         }
@@ -311,7 +307,6 @@ public class Estrutura {
     }
 
     //falta novas variaveis nas CHs
-        
     public String printChMin() {
         StringBuilder sb = new StringBuilder();
         boolean temProposta = false;
@@ -322,19 +317,20 @@ public class Estrutura {
                     sb.append(p.getChTotal() + " P" + p.getIdProfessor() + p.showItens(p.getTurmas()) + " + ");
                     temProposta = true;
                 }
-//                for (Turmas t : this.getTurmas()) {
-//                    if (t.getValorEstimado() != 0.00) {
-//                        sb.append(t.getCh_turma() + " P" + prof.getKey() + "T" + t.getId()+" + ");
-//                    }
-//                }
             }
-            
+            for (Turmas t : this.getTurmas()) {
+                if (t.getValorEstimado() != 0.00) {
+                    sb.append(t.getCh_turma() + " P" + prof.getKey() + "T" + t.getId() + " + ");
+                }
+                temProposta = true;
+            }
+
             if (temProposta) {
                 int ind = sb.toString().lastIndexOf("+ ");
                 if (ind >= 0) {
                     sb = new StringBuilder(sb).replace(ind, ind + 1, "");
                 }
-                sb.append(" > " + prof.getValue().gethMin() + "\n");
+                sb.append(" > " + prof.getValue().gethMin() + ";\n");
             }
             temProposta = false;
         }
@@ -352,20 +348,21 @@ public class Estrutura {
                     sb.append(p.getChTotal() + " P" + p.getIdProfessor() + p.showItens(p.getTurmas()) + " + ");
                     temProposta = true;
                 }
-//                for (Turmas t : this.getTurmas()) {
-//                    if (t.getValorEstimado() != 0.00) {
-//                        sb.append(t.getCh_turma() + " P" + prof.getKey() + "T" + t.getId()+" + ");
-//                    }
-//                    temProposta = true;
-//                }
 
             }
+            for (Turmas t : this.getTurmas()) {
+                if (t.getValorEstimado() != 0.00) {
+                    sb.append(t.getCh_turma() + " P" + prof.getKey() + "T" + t.getId() + " + ");
+                }
+                temProposta = true;
+            }
+            
             if (temProposta) {
                 int ind = sb.toString().lastIndexOf("+ ");
                 if (ind >= 0) {
                     sb = new StringBuilder(sb).replace(ind, ind + 1, "");
                 }
-                sb.append(" <= " + prof.getValue().gethMax() + "\n");
+                sb.append(" <= " + prof.getValue().gethMax() + ";\n");
             }
             temProposta = false;
         }
@@ -383,14 +380,14 @@ public class Estrutura {
                 }
 
             }
-            
+
             for (Turmas t : this.getTurmas()) {
                 if (t.getValorEstimado() != 0.00) {
-                    sb.append(" P" + prof.getKey() + "T" + t.getId()+" ");
+                    sb.append(" P" + prof.getKey() + "T" + t.getId() + " ");
                 }
             }
         }
-        return sb.toString();
+        return sb.append(";").toString();
     }
 
     public void escreverArquivo() throws IOException {
@@ -420,7 +417,7 @@ public class Estrutura {
             writer.newLine();
             writer.write("BINARY");
             writer.newLine();
-            writer.write("\n" + printVarBinary()+"\n");
+            writer.write("\n" + printVarBinary() + "\n");
             writer.newLine();
             writer.write("END");
             //Criando o conteúdo do arquivo
@@ -435,9 +432,8 @@ public class Estrutura {
         System.out.println("\n\n\n\nArquivo gravado em: " + path);
 
     }
-    
-    //getters e setters
 
+    //getters e setters
     public List<Turmas> getTurmas() {
         return turmas;
     }
@@ -487,7 +483,6 @@ public class Estrutura {
 //        }
 //
 //    }
-
 }
 
 /*
