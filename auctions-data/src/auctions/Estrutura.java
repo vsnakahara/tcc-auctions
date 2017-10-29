@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Random;
 
 /**
  *
@@ -74,7 +75,10 @@ public class Estrutura {
     public void balancearCargaHorariaProf(Estrutura e) {
 
         //diminuir o máximo possível CH do subconjunto, de cada professor
-//            calcularCH(proposta);
+        for (Proposta p : this.getPropostas()) {
+            calcularCH(p);
+        }
+        
 //            System.out.println("******************************************************************");
         preencherMatriz(e.getPropostas());
         ocorrencias();
@@ -166,8 +170,8 @@ public class Estrutura {
 
         int chMax = 0, chMin = 0;
 
-        for (int i = 0; i < proposta.getTurmas().size(); i++) {
-            boolean b = Q.add(proposta.getTurmas().get(i));
+        for (Map.Entry<Integer, Turmas> i : proposta.getTurmas().entrySet()) {
+            boolean b = Q.add(i.getValue());
         }
 
         //ideia Beligante!
@@ -390,8 +394,16 @@ public class Estrutura {
         return sb.append(";").toString();
     }
 
+    public void criarCasos(){
+        Random gerador = new Random();
+        int randomNum = gerador.nextInt((this.getTurmas().size() - 0) + 1) + 0;
+        System.out.println("number:" + randomNum);
+        
+    }
+    
+    
     public void escreverArquivo() throws IOException {
-        String path = "/home/vanessa/Documentos/tcc-auctions/teste3.lp";
+        String path = "/home/vanessa/Documentos/tcc-auctions/teste4.lp";
 
         File file = new File(path);
         long begin = System.currentTimeMillis();
