@@ -45,7 +45,6 @@ public class Proposta {
     public String showItens(HashMap<Integer,Turmas> t){
         StringBuilder id_turmas = new StringBuilder();
         try{
-            
             for (Map.Entry<Integer,Turmas> i : t.entrySet()) {
                 if(t != null){
                     id_turmas.append("T").append(i.getValue().getId());
@@ -54,7 +53,7 @@ public class Proposta {
         }catch(Exception e){}
         return id_turmas.toString();
     }
-
+    
     public Integer getIdProfessor() {
         return idProfessor;
     }
@@ -62,6 +61,7 @@ public class Proposta {
     public void setIdProfessor(Integer idProfessor) {
         this.idProfessor = idProfessor;
     }
+    
 
     public float getValor() {
         return valor;

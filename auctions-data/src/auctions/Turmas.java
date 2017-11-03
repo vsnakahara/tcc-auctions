@@ -13,9 +13,7 @@ public class Turmas implements Comparable<Turmas>{
     private int semestre;
     
     private float valorEstimado = 0.00f;
-    private float maiorValorEstimado;
-    private float manorValorEstimado;
-
+    
     public Turmas() {
         super();
     }
@@ -68,23 +66,7 @@ public class Turmas implements Comparable<Turmas>{
     public void setValorEstimado(float valorEstimado) {
         this.valorEstimado = valorEstimado;
     }
-
-    public float getMaiorValorEstimado() {
-        return maiorValorEstimado;
-    }
-
-    public void setMaiorValorEstimado(float maiorValorEstimado) {
-        this.maiorValorEstimado = maiorValorEstimado;
-    }
-
-    public float getManorValorEstimado() {
-        return manorValorEstimado;
-    }
-
-    public void setManorValorEstimado(float manorValorEstimado) {
-        this.manorValorEstimado = manorValorEstimado;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 5;

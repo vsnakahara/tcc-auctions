@@ -39,22 +39,20 @@ public class AuctionsData {
         
         HashMap<Integer, Turmas> s1 = new HashMap<>();
         s1.put(T1.getId(), T1);
-        s1.put(T2.getId(), T2);
-        s1.put(T3.getId(), T3);
-        s1.put(T4.getId(), T4);
+        s1.put(T2.getId(), T2);        
         
-        HashMap<Integer, Turmas> s2 = new HashMap<>();
+        HashMap<Integer, Turmas> s2 = new HashMap<>();        
         s2.put(T3.getId(), T3);
         s2.put(T4.getId(), T4);
-        s2.put(T5.getId(), T5);
-        s2.put(T6.getId(), T6);
-        
+                
         
         HashMap<Integer, Turmas> s3 = new HashMap<>();
-        s3.put(T2.getId(), T2);
-        s3.put(T4.getId(), T4);
-        s3.put(T6.getId(), T6);
-        s3.put(T7.getId(), T7);
+        s3.put(T0.getId(), T0);
+        s3.put(T0.getId(), T4);
+//        s3.put(T5.getId(), T5);
+//        s3.put(T6.getId(), T6);
+//        s3.put(T7.getId(), T7);
+        
         
         e.getPropostas().add(new Proposta(1, 15, s1));
         e.getPropostas().add(new Proposta(2, 15, s2));
@@ -69,7 +67,9 @@ public class AuctionsData {
         
         e.escreverArquivo();
         
-        e.criarCasos();
+        
+        
+        //e.criarCasos();
         
     }
     
