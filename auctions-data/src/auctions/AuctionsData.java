@@ -2,6 +2,7 @@ package auctions;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -40,23 +41,40 @@ public class AuctionsData {
         HashMap<Integer, Turmas> s1 = new HashMap<>();
         s1.put(T1.getId(), T1);
         s1.put(T2.getId(), T2);        
+        s1.put(T3.getId(), T3);        
         
         HashMap<Integer, Turmas> s2 = new HashMap<>();        
-        s2.put(T3.getId(), T3);
-        s2.put(T4.getId(), T4);
+        s2.put(T3.getId(), T3);        
+        s2.put(T4.getId(), T4);        
+        s2.put(T5.getId(), T5);        
+        
                 
         
         HashMap<Integer, Turmas> s3 = new HashMap<>();
         s3.put(T0.getId(), T0);
-        s3.put(T0.getId(), T4);
-//        s3.put(T5.getId(), T5);
-//        s3.put(T6.getId(), T6);
-//        s3.put(T7.getId(), T7);
+        s3.put(T2.getId(), T2);        
+        s3.put(T3.getId(), T3);        
         
+        s3.put(T4.getId(), T4);
+        s3.put(T5.getId(), T5);
+          
         
         e.getPropostas().add(new Proposta(1, 15, s1));
-        e.getPropostas().add(new Proposta(2, 15, s2));
+        e.getPropostas().add(new Proposta(1, 15, s2));
         e.getPropostas().add(new Proposta(3, 15, s3));
+        
+        
+        
+        
+        
+        
+        e.gerarValor();
+        System.out.println("******************************************************************");
+        
+        
+//        for (Map.Entry<Integer, Professor> prof : e.getProfessores().entrySet()) {
+//            e.gerarNumeroPropostas(e, prof.getKey());
+//        }
         
         e.toPrint();
         //System.out.println("**********************");
@@ -66,10 +84,6 @@ public class AuctionsData {
         
         
         e.escreverArquivo();
-        
-        
-        
-        //e.criarCasos();
         
     }
     
