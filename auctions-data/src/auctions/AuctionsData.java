@@ -1,7 +1,6 @@
 package auctions;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -103,10 +102,6 @@ public class AuctionsData {
         Turmas T89 = new Turmas(89, "FUNDAMENTOS DA PROGRAMACAO", 3, 1);
         Turmas T90 = new Turmas(90, "FUNDAMENTOS DA PROGRAMACAO", 3, 1);
 
-//        Consideramos 24 docentes efetivos, que são professores concursados com carga
-//        horária mínima de aula de 8h e máxima de 20 horas semanais. Os docentes colabora-
-//        dores são aqueles contratados conforme a necessidade do departamento e que possuem
-//        respectivamente carga horária mínima e máxima de 16 e 20 horas semanais.
         Estrutura e = new Estrutura();
         e.getTurmas().add(T0);
         e.getTurmas().add(T1);
@@ -208,6 +203,11 @@ public class AuctionsData {
         e.getTurmas().add(T88);
         e.getTurmas().add(T89);
         e.getTurmas().add(T90);
+        
+//        Consideramos 24 docentes efetivos, que são professores concursados com carga
+//        horária mínima de aula de 8h e máxima de 20 horas semanais. Os docentes colabora-
+//        dores são aqueles contratados conforme a necessidade do departamento e que possuem
+//        respectivamente carga horária mínima e máxima de 16 e 20 horas semanais.
 
         e.getProfessores().put(1, new Professor(1, "P1", 8, 20));
         e.getProfessores().put(2, new Professor(2, "P2", 8, 20));
