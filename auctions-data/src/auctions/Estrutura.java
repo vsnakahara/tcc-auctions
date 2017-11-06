@@ -89,11 +89,8 @@ public class Estrutura {
         for (Proposta p : e.getPropostas()) {
             penalizar(p);
         }
-        preencherMatriz(e.getPropostas());
-        System.out.println("******************************************************************");
-        ocorrenciaMesmoProfessor();
-        preencherMatriz(e.getPropostas());
-        
+        //preencherMatriz(e.getPropostas());
+        //System.out.println("******************************************************************");
         
     }
 
@@ -184,11 +181,14 @@ public class Estrutura {
 
                     }
                 }
+                p.getTurmas().remove(indice);
+                
+                this.getPropostas().get(id_proposta).setValorIndividual(p.getValor()
+                    / (this.getPropostas().get(id_proposta).getTurmas().size()));
+            
             }
 
-            p.getTurmas().remove(indice);
-            this.getPropostas().get(id_proposta).setValorIndividual(p.getValor()
-                    / (this.getPropostas().get(id_proposta).getTurmas().size()));
+            
 
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -246,25 +246,7 @@ public class Estrutura {
 
     }
 
-    public void ocorrenciaMesmoProfessor() {
-        int lastLine = this.getPropostas().size();
-        
-        
-        for (Proposta p : this.getPropostas()) {
-            for (Map.Entry<Integer, Professor> prof : this.getProfessores().entrySet()) {
-                for (int j = 0; j < this.getTurmas().size(); j++) {
-                    if(this.matriz[lastLine][j] > 1
-                            && prof.getKey() == p.getIdProfessor()){
-                        
-                        if (p.getTurmas().containsKey(this.getTurmas().get(j).getId())) {
-                            System.out.println("novos "+p.showItens(p.getTurmas()));
-                        }
-                    
-                    }
-                }
-            }
-        }   
-    }
+  
     
     public String printFuncaoObjetivo() {
         StringBuilder sb = new StringBuilder();
@@ -483,7 +465,7 @@ public class Estrutura {
         int c = 0;
         //Random gerador = new Random();
         int randomNum = 1 + (int)(Math.random() * (5 - 1));
-        int randomNumTurmas = 1 + (int)(Math.random() * (5 - 1));
+        int randomNumTurmas = 2 + (int)(Math.random() * (6 - 2));
         System.out.println("\n\nnumber:" + randomNum);
         
         while(c < randomNum){
@@ -500,7 +482,7 @@ public class Estrutura {
     }
 
     public void escreverArquivo() throws IOException {
-        String path = "/home/vanessa/Documentos/tcc-auctions/teste13.lp";
+        String path = "/home/vanessa/Documentos/tcc-auctions/teste24-doc1.lp";
 
         File file = new File(path);
         long begin = System.currentTimeMillis();
@@ -526,7 +508,7 @@ public class Estrutura {
             writer.newLine();
             writer.write("BINARY");
             writer.newLine();
-            writer.write("\n" + printVarBinary().trim() + ";\n");
+            writer.write("\n" + printVarBinary().trim() + " \n");
             writer.newLine();
             writer.write("END");
             //Criando o conteúdo do arquivo
@@ -538,7 +520,7 @@ public class Estrutura {
 //            long end = System.currentTimeMillis();
 //            writer.write("Tempo de gravação: " + (end - begin) + "ms.");
         }
-        System.out.println("\n\n\n\nArquivo gravado em: " + path);
+        System.out.println("\n\n\n\nArquivo gravado em: read " + path);
 
     }
     

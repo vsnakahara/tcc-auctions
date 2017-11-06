@@ -1,5 +1,6 @@
 package utils;
 
+import auctions.Proposta;
 import auctions.Turmas;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,33 @@ public class Util {
     
 
 }
+
+
+// public boolean q(Proposta p, Turmas nova) {
+//        for (Proposta prop : this.getPropostas()) {
+//            if (!prop.equals(p) && prop.getTurmas().size() == 1) {
+//                if (p.getIdProfessor() == prop.getIdProfessor()) {
+//
+//                    if (prop.getTurmas().containsKey(nova.getId())) {
+//                        if (prop.getValorIndividual() < nova.getValorEstimado()) {
+//
+//                            System.out.println("Já existe> " + nova.getId());
+//                            System.out.println("> já " + prop.getValorIndividual());
+//                            System.out.println(">> new " + nova.getValorEstimado());
+//
+//                            return false;
+//                        }
+//
+//                    }
+//                } else {
+//                    return true;
+//                }
+//
+//            }
+//        }
+//        return false;
+//    }
+
 //    public void interseccaoListas(Estrutura e) {
 //
 //        for (int i = 0; i < e.getPropostas().size() - 1; i++) {
