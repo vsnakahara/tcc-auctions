@@ -464,10 +464,9 @@ public class Estrutura {
     public void gerarNumeroPropostas(Estrutura e, int id_professor) {
         int c = 0;
         //Random gerador = new Random();
-        int randomNum = 1 + (int)(Math.random() * (5 - 1));
+        //int randomNum = 1 + (int)(Math.random() * (5 - 1));
+        int randomNum = 1;
         int randomNumTurmas = 2 + (int)(Math.random() * (6 - 2));
-        System.out.println("\n\nnumber:" + randomNum);
-        
         while(c < randomNum){
             HashMap<Integer, Turmas> s = new HashMap<>();
             s = e.gerarHashTurmas(randomNumTurmas); 
@@ -482,7 +481,7 @@ public class Estrutura {
     }
 
     public void escreverArquivo() throws IOException {
-        String path = "/home/vanessa/Documentos/tcc-auctions/teste24-doc1.lp";
+        String path = "/home/vanessa/Documentos/tcc-auctions/teste5.lp";
 
         File file = new File(path);
         long begin = System.currentTimeMillis();
@@ -521,6 +520,7 @@ public class Estrutura {
 //            writer.write("Tempo de gravação: " + (end - begin) + "ms.");
         }
         System.out.println("\n\n\n\nArquivo gravado em: read " + path);
+        System.out.println("Arquivo gravado em: write " + path);
 
     }
     
