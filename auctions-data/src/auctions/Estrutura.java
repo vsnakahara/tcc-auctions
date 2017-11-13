@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,8 @@ public class Estrutura {
     private HashMap<Integer, Professor> professores = new HashMap<>();
     //list de Propostas Submetidas -> contém S turmas de interesse de um professor Pi.
     private List<Proposta> propostas = new ArrayList<>();
+    
+    private HashMap<String, Proposta> filtroProposta = new HashMap<>();
 
     //matriz de ocorrências
     int[][] matriz = null;
@@ -234,7 +237,6 @@ public class Estrutura {
             
             for(int i = 0; i < this.getTurmas().size()-1; i++){
                 if(t != null && t.getId() == this.getTurmas().get(i).getId()){
-                    System.out.println("id remove: "+t.getId());
                     this.getTurmas().get(i).setValorEstimado((float) -(15 * 10) / 100);
                 }
             }
@@ -246,15 +248,46 @@ public class Estrutura {
 
     }
 
-  
+    public void concorrenciaMesmoProfessor(){
+        
+        System.out.println("as "+this.getPropostas().size());
+        
+        for (Proposta p : this.getPropostas()) {
+            
+             
+            String chave = "P"+p.getIdProfessor()+p.showItens(p.getTurmas()); 
+            
+            if(this.getFiltroProposta().get(chave)!= null){
+                
+                if(this.getFiltroProposta().get(chave).getIdProfessor() == p.getIdProfessor()){
+                    if(this.getFiltroProposta().get(chave).getValor() < p.getValor()){
+                        this.getFiltroProposta().get(chave).setValor(p.getValor());
+                    }
+                } else {
+                    this.getFiltroProposta().put(chave, p);
+                }
+                
+            } else {
+               this.getFiltroProposta().put(chave, p);
+            }
+        }
+        this.getPropostas().clear();
+        for (Map.Entry<String, Proposta> turmas : this.getFiltroProposta().entrySet()) {
+                      
+            this.getPropostas().add(turmas.getValue());
+        }
+        
+        System.out.println("asdiashd "+this.getPropostas().size());
+        System.out.println("turmas "+this.getFiltroProposta().size());
+        
+    }
     
     public String printFuncaoObjetivo() {
         StringBuilder sb = new StringBuilder();
-
+        
         for (Proposta p : this.getPropostas()) {
             sb.append(p.getValor() + " P" + p.getIdProfessor() + p.showItens(p.getTurmas()) + " + ");
         }
-
         for (Turmas t : this.getTurmas()) {
             if (t.getValorEstimado() != 0.00) {
                 for (Map.Entry<Integer, Professor> prof : this.getProfessores().entrySet()) {
@@ -279,7 +312,6 @@ public class Estrutura {
 
         for (Turmas t : this.getTurmas()) {
             for (Proposta p : this.getPropostas()) {
-
                 if (p.getTurmas().containsValue(t)) {
                     sb.append("P" + p.getIdProfessor()
                             + p.showItens(p.getTurmas()) + " + ");
@@ -479,9 +511,11 @@ public class Estrutura {
         
 
     }
+    
+    
 
-    public void escreverArquivo() throws IOException {
-        String path = "/home/vanessa/Documentos/tcc-auctions/teste5.lp";
+    public void escreverArquivo(String semestre) throws IOException {
+        String path = "/home/vanessa/Documentos/tcc-auctions/teste"+semestre+"12.lp";
 
         File file = new File(path);
         long begin = System.currentTimeMillis();
@@ -558,5 +592,16 @@ public class Estrutura {
     public void setMatriz(int[][] matriz) {
         this.matriz = matriz;
     }
+
+    public HashMap<String, Proposta> getFiltroProposta() {
+        return filtroProposta;
+    }
+
+    public void setFiltroProposta(HashMap<String, Proposta> filtroProposta) {
+        this.filtroProposta = filtroProposta;
+    }
+
+        
+    
 
 }
