@@ -506,10 +506,6 @@ public class Estrutura {
             e.getPropostas().add(new Proposta(id_professor, gerarValor(), s));
             c++;
         }
-        
-        
-        
-
     }
     
     //a) 5 professores (sendo 4 efetivos e 1 colaborador) e 20 turmas;
@@ -520,7 +516,7 @@ public class Estrutura {
         
         
         int c = 0, randomNum = 1; // enviar uma proposta
-        int randomNumTurmas = 2 + (int)(Math.random() * (4 - 2));
+        int randomNumTurmas = 2 + (int)(Math.random() * (6 - 2));
         
         
         while(c < randomNum){
@@ -529,6 +525,65 @@ public class Estrutura {
                 s = e.gerarHashTurmasCaso(randomNumTurmas, randomIndiceTurma); 
                 s.put(this.tCopy.get(randomIndiceTurma).getId(), 
                         this.tCopy.get(randomIndiceTurma));
+                
+                e.getPropostas().add(new Proposta(id_professor, gerarValor(), s));
+                c++; 
+                
+            } else {
+                HashMap<Integer, Turmas> s = new HashMap<>();
+                s = e.gerarHashTurmasCaso(randomNumTurmas, randomIndiceTurma); 
+                e.getPropostas().add(new Proposta(id_professor, gerarValor(), s));
+                c++; 
+            }
+        }
+    }
+    
+    public void gerarCaso2(Estrutura e, int id_professor, int randomIndiceTurma, int percent) {
+        
+        
+        int c = 0, randomNum = 1; // enviar uma proposta
+        int randomNumTurmas = 2 + (int)(Math.random() * (4 - 2));
+        int c2 = randomIndiceTurma+1;
+        
+        while(c < randomNum){
+            if(this.getPropostas().size() < percent){
+                HashMap<Integer, Turmas> s = new HashMap<>();
+                s = e.gerarHashTurmasCaso(randomNumTurmas, randomIndiceTurma); 
+                s.put(this.tCopy.get(randomIndiceTurma).getId(), 
+                        this.tCopy.get(randomIndiceTurma));
+                s.put(this.tCopy.get(c2).getId(), 
+                        this.tCopy.get(c2));
+                
+                e.getPropostas().add(new Proposta(id_professor, gerarValor(), s));
+                c++; 
+                
+            } else {
+                HashMap<Integer, Turmas> s = new HashMap<>();
+                s = e.gerarHashTurmasCaso(randomNumTurmas, randomIndiceTurma); 
+                e.getPropostas().add(new Proposta(id_professor, gerarValor(), s));
+                c++; 
+            }
+        }
+    }
+    
+    public void gerarCaso3(Estrutura e, int id_professor, int randomIndiceTurma, int percent) {
+        
+        
+        int c = 0, randomNum = 1; // enviar uma proposta
+        int randomNumTurmas = 2 + (int)(Math.random() * (3 - 2));
+        int c2 = randomIndiceTurma+1;
+        int c3 = randomIndiceTurma-1;
+        
+        while(c < randomNum){
+            if(this.getPropostas().size() < percent){
+                HashMap<Integer, Turmas> s = new HashMap<>();
+                s = e.gerarHashTurmasCaso(randomNumTurmas, randomIndiceTurma); 
+                s.put(this.tCopy.get(randomIndiceTurma).getId(), 
+                        this.tCopy.get(randomIndiceTurma));
+                s.put(this.tCopy.get(c2).getId(), 
+                        this.tCopy.get(c2));
+                s.put(this.tCopy.get(c3).getId(), 
+                        this.tCopy.get(c3));
                 
                 e.getPropostas().add(new Proposta(id_professor, gerarValor(), s));
                 c++; 
@@ -562,7 +617,7 @@ public class Estrutura {
     }
 
     public void escreverArquivo(String semestre) throws IOException {
-        String path = "/home/vanessa/Documentos/tcc-auctions/25caso"+semestre+"1.lp";
+        String path = "/home/vanessa/Documentos/tcc-auctions/"+semestre+"1.lp";
 
         File file = new File(path);
         long begin = System.currentTimeMillis();
