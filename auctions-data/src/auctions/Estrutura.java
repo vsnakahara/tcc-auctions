@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +24,10 @@ public class Estrutura {
     private List<Proposta> propostas = new ArrayList<>();
     
     private HashMap<String, Proposta> filtroProposta = new HashMap<>();
+    
+    private HashMap<Integer, Turmas> tCopy = new HashMap<>();
+    
+    
 
     //matriz de ocorrências
     int[][] matriz = null;
@@ -250,8 +253,6 @@ public class Estrutura {
 
     public void concorrenciaMesmoProfessor(){
         
-        System.out.println("as "+this.getPropostas().size());
-        
         for (Proposta p : this.getPropostas()) {
             
              
@@ -277,8 +278,7 @@ public class Estrutura {
             this.getPropostas().add(turmas.getValue());
         }
         
-        System.out.println("asdiashd "+this.getPropostas().size());
-        System.out.println("turmas "+this.getFiltroProposta().size());
+        //System.out.println("turmas "+this.getFiltroProposta().size());
         
     }
     
@@ -496,9 +496,9 @@ public class Estrutura {
     public void gerarNumeroPropostas(Estrutura e, int id_professor) {
         int c = 0;
         //Random gerador = new Random();
-        //int randomNum = 1 + (int)(Math.random() * (5 - 1));
-        int randomNum = 1;
+        int randomNum = 1 + (int)(Math.random() * (5 - 1));
         int randomNumTurmas = 2 + (int)(Math.random() * (6 - 2));
+                
         while(c < randomNum){
             HashMap<Integer, Turmas> s = new HashMap<>();
             s = e.gerarHashTurmas(randomNumTurmas); 
@@ -512,10 +512,57 @@ public class Estrutura {
 
     }
     
+    //a) 5 professores (sendo 4 efetivos e 1 colaborador) e 20 turmas;
+    //b) 10 professores (sendo 8 efetivos e 2 colaboradores) e 40 turmas;
+    //c) 15 professores (sendo 12 efetivos e 3 colaboradores) e 60 turmas;
     
+    public void gerarCaso1(Estrutura e, int id_professor, int randomIndiceTurma, int percent) {
+        
+        
+        int c = 0, randomNum = 1; // enviar uma proposta
+        int randomNumTurmas = 2 + (int)(Math.random() * (4 - 2));
+        
+        
+        while(c < randomNum){
+            if(this.getPropostas().size() < percent){
+                HashMap<Integer, Turmas> s = new HashMap<>();
+                s = e.gerarHashTurmasCaso(randomNumTurmas, randomIndiceTurma); 
+                s.put(this.tCopy.get(randomIndiceTurma).getId(), 
+                        this.tCopy.get(randomIndiceTurma));
+                
+                e.getPropostas().add(new Proposta(id_professor, gerarValor(), s));
+                c++; 
+                
+            } else {
+                HashMap<Integer, Turmas> s = new HashMap<>();
+                s = e.gerarHashTurmasCaso(randomNumTurmas, randomIndiceTurma); 
+                e.getPropostas().add(new Proposta(id_professor, gerarValor(), s));
+                c++; 
+            }
+        }
+    }
+    
+    public HashMap<Integer, Turmas> gerarHashTurmasCaso(int num_turmas, int randomIndiceTurma) {
+        int indice = 0;
+        HashMap<Integer, Turmas> s = new HashMap<>();
+        
+        while(s.size() < num_turmas){
+            indice = (int) (Math.random() * this.getTurmas().size());
+            
+            if(this.tCopy.get(indice) != null && this.tCopy.get(indice) != this.tCopy.get(randomIndiceTurma)
+                    && !this.tCopy.isEmpty()){
+                s.put(this.tCopy.get(indice).getId(), this.tCopy.get(indice));
+                this.tCopy.remove(indice);
+            }
+        
+        }
+                    
+        return s;
+
+    }
 
     public void escreverArquivo(String semestre) throws IOException {
-        String path = "/home/vanessa/Documentos/tcc-auctions/teste"+semestre+"12.lp";
+        String path = "/home/vanessa/Documentos/tcc-auctions/25caso"+semestre+"1.lp";
 
         File file = new File(path);
         long begin = System.currentTimeMillis();
@@ -599,6 +646,14 @@ public class Estrutura {
 
     public void setFiltroProposta(HashMap<String, Proposta> filtroProposta) {
         this.filtroProposta = filtroProposta;
+    }
+
+    public HashMap<Integer, Turmas> gettCopy() {
+        return tCopy;
+    }
+
+    public void settCopy(HashMap<Integer, Turmas> tCopy) {
+        this.tCopy = tCopy;
     }
 
         
