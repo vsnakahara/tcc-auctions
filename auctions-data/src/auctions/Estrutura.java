@@ -482,12 +482,12 @@ public class Estrutura {
         
         while(s.size() < num_turmas){
             indice = (int) (Math.random() * this.getTurmas().size());
-            System.out.println(this.getTurmas().get(indice).getId());
+//            System.out.println(this.getTurmas().get(indice).getId());
             s.put(this.getTurmas().get(indice).getId(), this.getTurmas().get(indice));
             
         }
                     
-        System.out.println("size S:"+ s.size());
+//        System.out.println("size S:"+ s.size());
        
         return s;
 
@@ -496,7 +496,7 @@ public class Estrutura {
     public void gerarNumeroPropostas(Estrutura e, int id_professor) {
         int c = 0;
         //Random gerador = new Random();
-        int randomNum = 1 + (int)(Math.random() * (5 - 1));
+        int randomNum = 1 + (int)(Math.random() * (6 - 1));
         int randomNumTurmas = 2 + (int)(Math.random() * (6 - 2));
                 
         while(c < randomNum){
@@ -617,7 +617,7 @@ public class Estrutura {
     }
 
     public void escreverArquivo(String semestre) throws IOException {
-        String path = "/home/vanessa/Documentos/tcc-auctions/"+semestre+"1.lp";
+        String path = "/home/vanessa/Documentos/tcc-auctions/completo/exemplo"+semestre+".lp";
 
         File file = new File(path);
         long begin = System.currentTimeMillis();
