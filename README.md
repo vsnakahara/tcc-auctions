@@ -7,6 +7,7 @@ Consiste em tratar:
   - Casos como concorrência de turmas;
   - Casos em de propostas sobrecarregadas;
   - Casos de turmas que não receberam lances.
+  
 E gerar um arquivo .lp que servirá de entrada para o solver CPLEX.  
   
   
