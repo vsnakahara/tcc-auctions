@@ -783,7 +783,7 @@ public class AuctionsData {
         }
 
         e.toPrint();
-        System.out.println("AA******************************************************************");
+        System.out.println("******************************************************************");
         e.balancearCargaHorariaProf(e);
         e.concorrenciaMesmoProfessor();
         System.out.println("******************************************************************");
@@ -796,20 +796,14 @@ public class AuctionsData {
     }
 
     public void popularSemestre1() throws IOException {
-        Turmas T1 = new Turmas(1, "FUNDAMENTOS DA COMPUTACAO", 4, 1);
-        Turmas T2 = new Turmas(2, "FUNDAMENTOS DA COMPUTACAO", 4, 1);
+        
+        Turmas T0 = new Turmas(0, "TRABALHO DE GRADUACAO", 2, 1);
+        Turmas T1 = new Turmas(1, "FUNDAMENTOS DA COMPUTACAO", 3, 1);
+        Turmas T2 = new Turmas(2, "FUNDAMENTOS DA COMPUTACAO", 3, 1);
         Turmas T3 = new Turmas(3, "METODOS FORMAIS II", 4, 1);
         Turmas T4 = new Turmas(4, "ESTRUTURA DE DADOS", 4, 1);
         Turmas T5 = new Turmas(5, "FUNDAMENTOS DE TECNOL.DA INFORMACAO", 4, 1);
         Turmas T6 = new Turmas(6, "FUND. DE PESQUISA EM INFORMATICA", 4, 1);
-        
-        Turmas T0 = new Turmas(0, "TRABALHO DE GRADUACAO", 2, 1);
-//        Turmas T1 = new Turmas(1, "FUNDAMENTOS DA COMPUTACAO", 3, 1);
-//        Turmas T2 = new Turmas(2, "FUNDAMENTOS DA COMPUTACAO", 3, 1);
-//        Turmas T3 = new Turmas(3, "METODOS FORMAIS II", 4, 1);
-//        Turmas T4 = new Turmas(4, "ESTRUTURA DE DADOS", 4, 1);
-//        Turmas T5 = new Turmas(5, "FUNDAMENTOS DE TECNOL.DA INFORMACAO", 4, 1);
-//        Turmas T6 = new Turmas(6, "FUND. DE PESQUISA EM INFORMATICA", 4, 1);
         Turmas T7 = new Turmas(7, "FUND. DE PESQUISA EM INFORMATICA", 4, 1);
         Turmas T8 = new Turmas(8, "PROC.DE SOFTWARE E E. DE REQUISITOS", 4, 1);
         Turmas T9 = new Turmas(9, "PROC.DE SOFTWARE E E. DE REQUISITOS", 4, 1);
@@ -897,7 +891,7 @@ public class AuctionsData {
 
         Estrutura e = new Estrutura();
 
-//        e.getTurmas().add(T0);
+        e.getTurmas().add(T0);
         e.getTurmas().add(T1);
         e.getTurmas().add(T2);
 
@@ -905,98 +899,98 @@ public class AuctionsData {
         e.getTurmas().add(T4);
         e.getTurmas().add(T5);
         e.getTurmas().add(T6);
-//        e.getTurmas().add(T7);
-//        e.getTurmas().add(T8);
-//        e.getTurmas().add(T9);
-//
-//        e.getTurmas().add(T10);
-//        e.getTurmas().add(T11);
-//        e.getTurmas().add(T12);
-//        e.getTurmas().add(T13);
-//        e.getTurmas().add(T14);
-//        e.getTurmas().add(T15);
-//        e.getTurmas().add(T16);
-//        e.getTurmas().add(T17);
-//        e.getTurmas().add(T18);
-//        e.getTurmas().add(T19);
-//
-//        e.getTurmas().add(T20);
-//        e.getTurmas().add(T21);
-//        e.getTurmas().add(T22);
-//        e.getTurmas().add(T23);
-//        e.getTurmas().add(T24);
-//        e.getTurmas().add(T25);
-//        e.getTurmas().add(T26);
-//        e.getTurmas().add(T27);
-//        e.getTurmas().add(T28);
-//        e.getTurmas().add(T29);
-//
-//        e.getTurmas().add(T30);
-//        e.getTurmas().add(T31);
-//        e.getTurmas().add(T32);
-//        e.getTurmas().add(T33);
-//        e.getTurmas().add(T34);
-//        e.getTurmas().add(T35);
-//        e.getTurmas().add(T36);
-//        e.getTurmas().add(T37);
-//        e.getTurmas().add(T38);
-//        e.getTurmas().add(T39);
-//
-//        e.getTurmas().add(T40);
-//        e.getTurmas().add(T41);
-//        e.getTurmas().add(T42);
-//        e.getTurmas().add(T43);
-//        e.getTurmas().add(T44);
-//        e.getTurmas().add(T45);
-//        e.getTurmas().add(T46);
-//        e.getTurmas().add(T47);
-//        e.getTurmas().add(T48);
-//        e.getTurmas().add(T49);
-//
-//        e.getTurmas().add(T50);
-//        e.getTurmas().add(T51);
-//        e.getTurmas().add(T52);
-//        e.getTurmas().add(T53);
-//        e.getTurmas().add(T54);
-//        e.getTurmas().add(T55);
-//        e.getTurmas().add(T56);
-//        e.getTurmas().add(T57);
-//        e.getTurmas().add(T58);
-//        e.getTurmas().add(T59);
-//
-//        e.getTurmas().add(T60);
-//        e.getTurmas().add(T61);
-//        e.getTurmas().add(T62);
-//        e.getTurmas().add(T63);
-//        e.getTurmas().add(T64);
-//        e.getTurmas().add(T65);
-//        e.getTurmas().add(T66);
-//        e.getTurmas().add(T67);
-//        e.getTurmas().add(T68);
-//        e.getTurmas().add(T69);
-//
-//        e.getTurmas().add(T70);
-//        e.getTurmas().add(T71);
-//        e.getTurmas().add(T72);
-//        e.getTurmas().add(T73);
-//        e.getTurmas().add(T74);
-//        e.getTurmas().add(T75);
-//        e.getTurmas().add(T76);
-//        e.getTurmas().add(T77);
-//        e.getTurmas().add(T78);
-//        e.getTurmas().add(T79);
-//
-//        e.getTurmas().add(T80);
-//        e.getTurmas().add(T81);
-//        e.getTurmas().add(T82);
-//        e.getTurmas().add(T83);
-//        e.getTurmas().add(T84);
-//        e.getTurmas().add(T85);
-//        e.getTurmas().add(T86);
-//        e.getTurmas().add(T87);
-//        e.getTurmas().add(T88);
-//        e.getTurmas().add(T89);
-//        e.getTurmas().add(T90);
+        e.getTurmas().add(T7);
+        e.getTurmas().add(T8);
+        e.getTurmas().add(T9);
+
+        e.getTurmas().add(T10);
+        e.getTurmas().add(T11);
+        e.getTurmas().add(T12);
+        e.getTurmas().add(T13);
+        e.getTurmas().add(T14);
+        e.getTurmas().add(T15);
+        e.getTurmas().add(T16);
+        e.getTurmas().add(T17);
+        e.getTurmas().add(T18);
+        e.getTurmas().add(T19);
+
+        e.getTurmas().add(T20);
+        e.getTurmas().add(T21);
+        e.getTurmas().add(T22);
+        e.getTurmas().add(T23);
+        e.getTurmas().add(T24);
+        e.getTurmas().add(T25);
+        e.getTurmas().add(T26);
+        e.getTurmas().add(T27);
+        e.getTurmas().add(T28);
+        e.getTurmas().add(T29);
+
+        e.getTurmas().add(T30);
+        e.getTurmas().add(T31);
+        e.getTurmas().add(T32);
+        e.getTurmas().add(T33);
+        e.getTurmas().add(T34);
+        e.getTurmas().add(T35);
+        e.getTurmas().add(T36);
+        e.getTurmas().add(T37);
+        e.getTurmas().add(T38);
+        e.getTurmas().add(T39);
+
+        e.getTurmas().add(T40);
+        e.getTurmas().add(T41);
+        e.getTurmas().add(T42);
+        e.getTurmas().add(T43);
+        e.getTurmas().add(T44);
+        e.getTurmas().add(T45);
+        e.getTurmas().add(T46);
+        e.getTurmas().add(T47);
+        e.getTurmas().add(T48);
+        e.getTurmas().add(T49);
+
+        e.getTurmas().add(T50);
+        e.getTurmas().add(T51);
+        e.getTurmas().add(T52);
+        e.getTurmas().add(T53);
+        e.getTurmas().add(T54);
+        e.getTurmas().add(T55);
+        e.getTurmas().add(T56);
+        e.getTurmas().add(T57);
+        e.getTurmas().add(T58);
+        e.getTurmas().add(T59);
+
+        e.getTurmas().add(T60);
+        e.getTurmas().add(T61);
+        e.getTurmas().add(T62);
+        e.getTurmas().add(T63);
+        e.getTurmas().add(T64);
+        e.getTurmas().add(T65);
+        e.getTurmas().add(T66);
+        e.getTurmas().add(T67);
+        e.getTurmas().add(T68);
+        e.getTurmas().add(T69);
+
+        e.getTurmas().add(T70);
+        e.getTurmas().add(T71);
+        e.getTurmas().add(T72);
+        e.getTurmas().add(T73);
+        e.getTurmas().add(T74);
+        e.getTurmas().add(T75);
+        e.getTurmas().add(T76);
+        e.getTurmas().add(T77);
+        e.getTurmas().add(T78);
+        e.getTurmas().add(T79);
+
+        e.getTurmas().add(T80);
+        e.getTurmas().add(T81);
+        e.getTurmas().add(T82);
+        e.getTurmas().add(T83);
+        e.getTurmas().add(T84);
+        e.getTurmas().add(T85);
+        e.getTurmas().add(T86);
+        e.getTurmas().add(T87);
+        e.getTurmas().add(T88);
+        e.getTurmas().add(T89);
+        e.getTurmas().add(T90);
 
 //        Consideramos 24 docentes efetivos, que são professores concursados com carga
 //        horária mínima de aula de 8h e máxima de 20 horas semanais. Os docentes colabora-
@@ -1005,50 +999,55 @@ public class AuctionsData {
         e.getProfessores().put(1, new Professor(1, "P1", 8, 20));
         e.getProfessores().put(2, new Professor(2, "P2", 8, 20));
         e.getProfessores().put(3, new Professor(3, "P3", 8, 20));
-//        e.getProfessores().put(4, new Professor(4, "P4", 8, 20));
-//        e.getProfessores().put(5, new Professor(5, "P5", 8, 20));
-//        e.getProfessores().put(6, new Professor(6, "P6", 8, 20));
-//        e.getProfessores().put(7, new Professor(7, "P7", 8, 20));
-//        e.getProfessores().put(8, new Professor(8, "P8", 8, 20));
-//        e.getProfessores().put(9, new Professor(9, "P9", 8, 20));
-//        e.getProfessores().put(10, new Professor(10, "P10", 8, 20));
-//        e.getProfessores().put(11, new Professor(11, "P11", 8, 20));
-//        e.getProfessores().put(12, new Professor(12, "P12", 8, 20));
-//        e.getProfessores().put(13, new Professor(13, "P13", 8, 20));
-//        e.getProfessores().put(14, new Professor(14, "P14", 8, 20));
-//        e.getProfessores().put(15, new Professor(15, "P15", 8, 20));
-//        e.getProfessores().put(16, new Professor(16, "P16", 8, 20));
-//        e.getProfessores().put(17, new Professor(17, "P17", 8, 20));
-//        e.getProfessores().put(18, new Professor(18, "P18", 8, 20));
-//        e.getProfessores().put(19, new Professor(19, "P19", 8, 20));
-//        e.getProfessores().put(20, new Professor(20, "P20", 8, 20));
-//        e.getProfessores().put(21, new Professor(21, "P21", 8, 20));
-//        e.getProfessores().put(22, new Professor(22, "P22", 8, 20));
-//        e.getProfessores().put(23, new Professor(23, "P23", 8, 20));
-//        e.getProfessores().put(24, new Professor(24, "P24", 8, 20));
-//        e.getProfessores().put(25, new Professor(25, "P25", 16, 20));
-//        e.getProfessores().put(26, new Professor(26, "P26", 16, 20));
+        e.getProfessores().put(4, new Professor(4, "P4", 8, 20));
+        e.getProfessores().put(5, new Professor(5, "P5", 8, 20));
+        e.getProfessores().put(6, new Professor(6, "P6", 8, 20));
+        e.getProfessores().put(7, new Professor(7, "P7", 8, 20));
+        e.getProfessores().put(8, new Professor(8, "P8", 8, 20));
+        e.getProfessores().put(9, new Professor(9, "P9", 8, 20));
+        e.getProfessores().put(10, new Professor(10, "P10", 8, 20));
+        e.getProfessores().put(11, new Professor(11, "P11", 8, 20));
+        e.getProfessores().put(12, new Professor(12, "P12", 8, 20));
+        e.getProfessores().put(13, new Professor(13, "P13", 8, 20));
+        e.getProfessores().put(14, new Professor(14, "P14", 8, 20));
+        e.getProfessores().put(15, new Professor(15, "P15", 8, 20));
+        e.getProfessores().put(16, new Professor(16, "P16", 8, 20));
+        e.getProfessores().put(17, new Professor(17, "P17", 8, 20));
+        e.getProfessores().put(18, new Professor(18, "P18", 8, 20));
+        e.getProfessores().put(19, new Professor(19, "P19", 8, 20));
+        e.getProfessores().put(20, new Professor(20, "P20", 8, 20));
+        e.getProfessores().put(21, new Professor(21, "P21", 8, 20));
+        e.getProfessores().put(22, new Professor(22, "P22", 8, 20));
+        e.getProfessores().put(23, new Professor(23, "P23", 8, 20));
+        e.getProfessores().put(24, new Professor(24, "P24", 8, 20));
+        e.getProfessores().put(25, new Professor(25, "P25", 16, 20));
+        e.getProfessores().put(26, new Professor(26, "P26", 16, 20));
 
-        HashMap<Integer, Turmas> s1 = new HashMap<>();
-        s1.put(T1.getId(), T1);
-        s1.put(T2.getId(), T2);        
         
-        HashMap<Integer, Turmas> s2 = new HashMap<>();
-        s2.put(T3.getId(), T3);        
-        s2.put(T4.getId(), T4);        
-        
-        HashMap<Integer, Turmas> s3 = new HashMap<>();
-        s3.put(T5.getId(), T5);        
-        s3.put(T4.getId(), T4);        
-        
-        e.getPropostas().add(new Proposta(1, 15, s1));
-        e.getPropostas().add(new Proposta(2, 15, s2));
-        e.getPropostas().add(new Proposta(3, 15, s3));
+        //Exemplo para instânciar problemas menores
+//        HashMap<Integer, Turmas> s1 = new HashMap<>();
+//        s1.put(T1.getId(), T1);
+//        s1.put(T2.getId(), T2);        
+//        
+//        HashMap<Integer, Turmas> s2 = new HashMap<>();
+//        s2.put(T3.getId(), T3);        
+//        s2.put(T4.getId(), T4);        
+//        
+//        HashMap<Integer, Turmas> s3 = new HashMap<>();
+//        s3.put(T5.getId(), T5);        
+//        s3.put(T4.getId(), T4);        
+//        
+//        e.getPropostas().add(new Proposta(1, 15, s1));
+//        e.getPropostas().add(new Proposta(2, 15, s2));
+//        e.getPropostas().add(new Proposta(3, 15, s3));
 //        System.out.println("******************************************************************");
-//
-//        for (Map.Entry<Integer, Professor> prof : e.getProfessores().entrySet()) {
-//            e.gerarNumeroPropostas(e, prof.getKey());
-//        }
+
+        //Exemplo para instânciar problemas maiores de forma aleatória
+        // Quantidade de turmas e propostas estão config no método gerarNumeroPropostas
+
+        for (Map.Entry<Integer, Professor> prof : e.getProfessores().entrySet()) {
+            e.gerarNumeroPropostas(e, prof.getKey());
+        }
 
         e.toPrint();
         System.out.println("******************************************************************");
@@ -1066,8 +1065,8 @@ public class AuctionsData {
 
     public static void main(String[] args) throws IOException {
         AuctionsData ad = new AuctionsData();
-//        ad.popularSemestre1();
         ad.popularSemestre1();
+        //ad.popularSemestre1();
 
 
     }
